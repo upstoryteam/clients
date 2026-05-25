@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Vercel
+.vercel
+.vercel/
+
+# Logs and editor cruft
+*.log
+.idea/
+.vscode/
+*.swp
+
+# Node (in case any audit ever needs a build step)
+node_modules/
+
+# Secrets, just in case
+.env
+.env.*
+*.key
+*.pem
