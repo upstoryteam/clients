@@ -21,13 +21,15 @@ The brief body stays **cream** (`#fcfcfa`) for readability. Only the **header zo
 
 ## Header variants
 
-### `plate` (default)
+### `plain` (default for `dark` logos)
 
 - Upstory mark on cream.
 - Serif “for”.
-- Client logo in a small **dark or light plate** (opposite of logo tone).
+- Client logo **with no plate** (no rounded box). Use when the mark reads clearly on cream (e.g. Citizen Health).
 
-Use when you want a minimal header or when only the client mark needs help.
+### `plate`
+
+- Same header as `plain`, but client logo sits in a small **dark or light plate** when contrast needs help.
 
 ### `band` (recommended for `light` logos)
 

@@ -80,17 +80,28 @@ body.brief {
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  background: var(--ink);
-  border-radius: 10px;
-  padding: 14px 22px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
   flex-shrink: 0;
 }
 
-/* dark logo artwork → light plate */
+/* dark logo on cream — optional white plate */
 .brief-header-client.is-light-plate {
   background: var(--white);
   border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 22px;
   box-shadow: 0 1px 0 rgba(21, 29, 31, 0.04);
+}
+
+/* light logo on cream — dark plate behind mark only */
+.brief-header-client.is-dark-plate {
+  background: var(--ink);
+  border-radius: 10px;
+  padding: 14px 22px;
 }
 
 /* light logo on header band → no extra plate */
@@ -100,12 +111,15 @@ body.brief {
   border-radius: 0;
 }
 
+/* Plain client logo on cream — no wrapper, no plate */
+.brief-header-logo,
 .brief-header-client img {
   height: 28px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
   display: block;
+  flex-shrink: 0;
 }
 
 .outcome {
@@ -390,6 +404,141 @@ body.brief {
   text-transform: uppercase;
   color: var(--ink-3);
   margin-bottom: 3px;
+}
+
+/* Impact calculator — optional artifact when sizing upside */
+.vis-impact-calc {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+}
+
+@media (max-width: 640px) {
+  .vis-impact-calc {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vis-calc-inputs {
+  padding: 20px 22px;
+  background: var(--white);
+}
+
+.vis-calc-output-pane {
+  padding: 20px 22px;
+  background: var(--ink);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vis-calc-input {
+  margin-bottom: 18px;
+}
+
+.vis-calc-input:last-of-type {
+  margin-bottom: 6px;
+}
+
+.vis-calc-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.vis-calc-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.vis-calc-value {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+
+.vis-calc-slider {
+  width: 100%;
+  appearance: none;
+  height: 4px;
+  background: var(--surface);
+  border-radius: 2px;
+  outline: none;
+}
+
+.vis-calc-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--bronze);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--white);
+  box-shadow: 0 1px 3px rgba(21, 29, 31, 0.2);
+}
+
+.vis-calc-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--bronze);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--white);
+}
+
+.vis-calc-helper {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+.vis-calc-out-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0 0 8px;
+}
+
+.vis-calc-out-number {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  line-height: 0.95;
+  font-weight: 500;
+  color: #c4a574;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+.vis-calc-out-desc {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.vis-calc-out-baseline {
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.vis-calc-out-baseline strong {
+  color: #c4a574;
+  font-weight: 600;
 }
 
 .section-intro {

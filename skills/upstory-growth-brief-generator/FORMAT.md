@@ -30,22 +30,37 @@ Nothing else: no second hero, no “why this fits” essay, no numbered measurem
 ## 2. Outcome headline
 
 - **Font:** Manrope, one line when possible.
-- **Voice:** partnership, not lecture. Lead with **we can help**, not “here is what your company must do.”
-- **Outcome (required):** name a **measurable result** you are offering to move (conversion, first payment, activation, completion, show-up rate, etc.).
-- **Quant (required):** include a number or defensible range on that same outcome (same metric family as **Ways to measure success**).
-- **Examples:** `We believe we can help {CasualizedName} lift first rent payment conversion on the UMoveFree cohort by about 10%.`
-- **Avoid:** inflection-point rhetoric, unmeasured “improve onboarding,” strategy essays, contrast pivots (`not X, but Y`).
+- **Voice:** partnership, not lecture. Lead with **We believe we can help {CasualizedName}…**
+- **Outcome (required):** one **measurable result** (same metric family as **Ways to measure success**).
+- **Quant (required):** a specific number, rate, count, or window. Write it like a target you would put in a brief to a CEO, not a hedge.
+
+**Pick the quant shape that fits the row** (do not default to “lift by X%”):
+
+| Shape | Example |
+|-------|---------|
+| **Rate + window** | `…move 40% of UMoveFree renters to first rent payment within 30 days.` |
+| **Increment per 100** | `…get 8 more first rent payments per 100 UMoveFree signups.` |
+| **Absolute count + window** | `…add 90 five-star App Store ratings in the next 90 days.` |
+| **Ratio** | `…turn 1 in 4 homepage visitors into an account within 24 hours.` |
+| **Time-to-outcome** | `…cut median days-to-certification to 45 in each new state.` |
+
+**Hard avoids:** `about`, `~`, `lift … by X%` as a lazy template, inflection-point rhetoric, unmeasured “improve onboarding,” strategy essays.
 
 ---
 
 ## 3. Insight (`Our read`)
 
-Warm card under the headline (bronze top gradient, lightbulb + eyebrow on one row, body below).
+Warm card under the headline. This is a **talking point in the room**, not an internal research recap.
 
 - **Eyebrow (locked):** `Our read` only.
 - **Body:** Source Serif 4, **max 3 sentences**, full width of the card.
-- **Structure:** (1) what you see in their situation — use **opportunity / value** framing, not “real opening” filler; (2) **In the product…** — where leverage lives; (3) bridge — **The opportunities below…**
-- **Tone:** observant peer, not auditor. “Your {news} is an opportunity to create value…” / “We would focus on…”
+- **Audience:** write to **them** (`you` / `your` where natural). It should sound like the opener on a call, not a memo for Upstory.
+- **Do not:** restate their funding, launch, or press back to them; open with “{News} is an opportunity to create value”; summarize what they already told you in the CSV.
+- **Do:** one sharp observation from looking at the product or funnel; where the wedge is in the UI or journey; bridge to **The opportunities below are where we would start** (or close variant).
+
+**Fail:** `The Series A and mobile launch are an opportunity to create value: families arrive with urgent questions.`
+
+**Pass:** `When someone hits your homepage, they are already leaning in. The signup screen still asks for email before the Advocate runs. That gap is what we would close first.`
 
 ---
 
@@ -65,18 +80,57 @@ Each block:
 
 ### Artifacts (visuals)
 
-Artifacts sit **inside** the opportunity they support. They should **earn their space** — clarify a moment, path, or metric; not decorate.
+**Nothing is better than something wrong.** Write the opportunity title and body first, then decide if a visual earns its place. If it does not pass the relevance test below, omit it.
 
-| Variant | When to use | Layout |
-|---------|-------------|--------|
-| `journey` | 3-step path to the outcome moment; emphasize the key step | Inline, dashed top rule; steps span full width |
-| `funnel` | Stage drop-off or conversion; directional % | Card box; bars span full width; label **Illustrative** if not real data |
-| `chips` | 2–3 tight metric tags (north-star, cohort, win) | Inline; chips share row width equally |
-| *(none)* | Prose is enough | Valid for any block — do not force a visual |
+#### How to choose (per block)
 
-**Distribution:** Prefer **one** strong artifact on the page (often `funnel` on `02`). Inline `journey` or `chips` on other blocks is fine. All three blocks do **not** need a visual.
+1. Finish the prose. One sentence: *what change are we proposing?*
+2. Ask: *If we sketched this on a whiteboard, would it be a path, a narrowing funnel, or a set of labels?*
+3. Pick **one** form that matches, or **none**.
 
-**Width:** `.visual`, journey, funnel, and chips use **100%** of the opportunity column.
+| If the opportunity is about… | Use | Do not use |
+|------------------------------|-----|------------|
+| **Reordering or inserting a step** in a flow (show value before ask, handoff, onboarding path) | `journey` | funnel, calculator |
+| **Where people fall off** between named stages (signup → account → payment) | `funnel` | journey, calculator |
+| **Sizing the prize** if we fix X (sliders + live outcome tied to headline metric) | `calculator` | funnel, journey |
+| **Defining 2–3 concrete tags** for this block only (thresholds, cohort labels) | `chips` (rare) | journey, funnel, calculator |
+| **Cohort rules, analytics hygiene, positioning, copy-only UX** | **none** | any chart that repeats the paragraph |
+
+Typical page: **1–2 artifacts total**. Never assign `01` journey / `02` funnel / `03` chips by habit.
+
+#### Relevance test (all must pass, or omit the artifact)
+
+- [ ] Step or stage **labels are theirs** (product, partner, screen names), not `Step 1` / `Onboarding`.
+- [ ] The **highlighted** journey step or funnel stage is the moment your title proposes to fix.
+- [ ] Deleting the visual would remove a **relationship** (order or relative drop) that the prose does not already carry.
+- [ ] You cannot swap this visual to another opportunity without changing labels and meaning.
+- [ ] Funnel bars are **illustrative** unless you have real data; label **Illustrative. Where we would look first.**
+
+#### Reference pairings (this repo)
+
+| Brief | Block | Artifact | Why it fits |
+|-------|-------|----------|-------------|
+| Stake | 01 Show payoff before deposit | `journey` | Sequence: partner → value → deposit ask |
+| Stake | 02 First rent payment | `funnel` | Drop-off from signup to payment |
+| Stake | 03 Cohort measurement | **none** | Analytics; measure section owns metrics |
+| Citizen | 01 Demo before email | `journey` | Sequence: visit → demo → signup |
+| Citizen | 02 App Store reviews | `calculator` | Interactive sizing of ratings in 90 days (MAU × prompt × convert) |
+| Citizen | 03 Cohort readout | **none** | Instrumentation, not a flow diagram |
+| Abby | 01 One guided path | `journey` | Apply → training/forms → certified |
+| Abby | 02 First paid shift | `funnel` | Application → approval → first shift |
+| Abby | 03 Per-state rollup | **none** | Reporting structure, not visualized here |
+
+**Width:** artifacts use **100%** of the opportunity column.
+
+#### Impact calculator (`calculator`)
+
+Use when the opportunity is about **how much upside** is on the table if the product change works. Recipient can drag sliders and see the outcome move.
+
+- **Static HTML:** `shared/brief-impact-calc.js` + markup class `vis-impact-calc` with `data-formula` (see `citizen-health/brief/index.html`).
+- **React:** `type: 'calculator'` on `SolutionBlock` → `brief-impact-calc.tsx` (client component).
+- **Formulas (extend in both files):** `app_store_ratings_90d`, `umove_first_payment_lift`.
+- **Rules:** 2–3 inputs max; defaults documented in helper text; baseline line uses their **current** public number (e.g. 9 ratings); never present outputs as their actual data.
+- **Skip** if you do not have defensible inputs or the opportunity is not about volume/rate sizing.
 
 ---
 

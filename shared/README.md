@@ -4,7 +4,8 @@ Used by growth brief pages and available site-wide on Vercel at `/shared/<filena
 
 | File | Purpose |
 |---|---|
-| `brief.css` | Growth brief layout + Upstory design tokens (Manrope, Inria Serif, logo plate) |
+| `brief.css` | Growth brief layout + Upstory design tokens (Manrope, Source Serif 4) |
+| `brief-impact-calc.js` | Optional interactive impact calculators on static briefs |
 | `upstory-logo.png` | Upstory mark in the brief closer (matches Citizen Health audit) |
 | `rick-russie.avif` | Rick Russie headshot in the closer signature block |
 | `logos/<slug>.svg` | Per-company logos cached from their marketing site (unchanged artwork) |

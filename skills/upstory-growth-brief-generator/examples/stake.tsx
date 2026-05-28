@@ -32,14 +32,13 @@ export default function StakePage() {
         />
 
         <OutcomeHeadline>
-          We believe we can help Stake lift first rent payment conversion on the UMoveFree cohort by about 10%.
+          We believe we can help Stake move 40% of UMoveFree renters to first rent payment within 30 days.
         </OutcomeHeadline>
 
         <MainInsight>
           <p>
-            The Lighthouse fold-in is an opportunity to create value: renters arrive from UMoveFree with housing intent. In the
-            product, the handoff and first weeks need to make Cash Back concrete fast. The opportunities below are where
-            we would focus.
+            You have a short window right after UMoveFree handoff while renters still have the apartment math in mind. Cash
+            Back should land in that first session. The opportunities below are where we would start.
           </p>
         </MainInsight>
 
@@ -74,24 +73,16 @@ export default function StakePage() {
             }}
           >
             <p>
-              That payment converts curiosity into belief. We would look closely at the stretch between onboarding
-              complete and first payment scheduled.
+              First rent payment is when the product proves itself. We would map every step from onboarding complete to
+              payment scheduled.
             </p>
           </SolutionBlock>
 
-          <SolutionBlock
-            index={3}
-            title="Measure the UMoveFree cohort on its own terms"
-            visual={{
-              type: 'chips',
-              cells: [
-                { label: 'North-star', value: 'First rent payment in 30 days' },
-                { label: 'Cohort', value: 'UMoveFree, 10% holdout' },
-                { label: 'Win', value: '+5–10 pp at 60 days' },
-              ],
-            }}
-          >
-            <p>Hold the partner channel to its own bar so wins are readable without blending organic signups.</p>
+          <SolutionBlock index={3} title="Measure the UMoveFree cohort on its own terms">
+            <p>
+              Hold UMoveFree as its own cohort with a matched organic baseline so you can read lift without blending
+              channels.
+            </p>
           </SolutionBlock>
         </OpportunitiesGroup>
 

@@ -42,6 +42,7 @@ export default function Page() {
 
         <OpportunitiesIntro lead="{{opportunities_lead}}" />
 
+        {/* Per block: journey = sequence, funnel = drop-off, chips = rare. Delete visual={{...}} if FORMAT.md relevance test fails. */}
         <OpportunitiesGroup>
           <SolutionBlock
             index={1}

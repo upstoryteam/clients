@@ -1,4 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
+import { ImpactCalculator, type ImpactCalcFormula } from './brief-impact-calc';
 import { upstoryBriefStyle } from './upstory-tokens';
 
 export const SHARED = '/shared';
@@ -42,17 +43,17 @@ export function BriefPage({ children }: { children: ReactNode }) {
 }
 
 export type ClientLogoTone = 'light' | 'dark';
-export type HeaderVariant = 'plate' | 'band';
+export type HeaderVariant = 'plain' | 'plate' | 'band';
 
 /**
  * Co-branded header. `clientLogoTone` describes the client artwork (not the page).
- * `band` = full dark header strip for light logos; `plate` = small plate behind client only.
+ * `plain` = logo on cream, no plate; `plate` = small plate behind client; `band` = full dark strip (light logos).
  */
 export function BriefHeader({
   clientSrc,
   clientAlt,
   clientLogoTone = 'dark',
-  headerVariant = 'plate',
+  headerVariant = 'plain',
 }: {
   clientSrc: string;
   clientAlt: string;
@@ -61,14 +62,19 @@ export function BriefHeader({
   headerVariant?: HeaderVariant;
 }) {
   const useBand = headerVariant === 'band' && clientLogoTone === 'light';
-  const clientPlateClass =
-    clientLogoTone === 'dark' ? 'is-light-plate' : useBand ? '' : '';
+  const clientPlateClass = useBand
+    ? ''
+    : headerVariant === 'plate' && clientLogoTone === 'dark'
+      ? 'is-light-plate'
+      : headerVariant === 'plate' && clientLogoTone === 'light'
+        ? 'is-dark-plate'
+        : '';
 
   return (
     <header
-      className={`mb-11 border-b border-[var(--upstory-rule)] pb-7 ${useBand ? 'is-band -mx-7 bg-[var(--upstory-ink)] px-7 pt-6' : ''}`}
+      className={`brief-header mb-11 border-b border-[var(--upstory-rule)] pb-7 ${useBand ? 'is-band -mx-7 bg-[var(--upstory-ink)] px-7 pt-6' : ''}`}
     >
-      <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+      <div className="brief-header-brands flex flex-wrap items-center gap-x-5 gap-y-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={`${SHARED}/upstory-logo.png`}
@@ -78,18 +84,19 @@ export function BriefHeader({
         <span className="brief-header-for font-serif text-[17px] italic leading-none text-[var(--upstory-ink-3)]">
           for
         </span>
-        <div
-          className={`brief-header-client inline-flex shrink-0 items-center justify-start rounded-[10px] px-[22px] py-3.5 ${
-            useBand
-              ? 'bg-transparent px-0 py-0'
-              : clientLogoTone === 'light'
-                ? 'bg-[var(--upstory-ink)]'
-                : 'border border-[var(--upstory-rule)] bg-[var(--upstory-surface-raised)] shadow-[0_1px_0_rgba(21,29,31,0.04)]'
-          } ${clientPlateClass}`}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={clientSrc} alt={clientAlt} className="block h-7 w-auto max-w-[180px] object-contain" />
-        </div>
+        {headerVariant === 'plain' && !useBand ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={clientSrc}
+            alt={clientAlt}
+            className="brief-header-logo block h-7 w-auto max-w-[180px] shrink-0 object-contain"
+          />
+        ) : (
+          <div className={`brief-header-client inline-flex shrink-0 items-center justify-start ${clientPlateClass}`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={clientSrc} alt={clientAlt} className="block h-7 w-auto max-w-[180px] object-contain" />
+          </div>
+        )}
       </div>
     </header>
   );
@@ -159,8 +166,17 @@ type FunnelVisual = {
   rows: { label: string; pct: number; key?: boolean }[];
 };
 type ChipsVisual = { type: 'chips'; cells: { label: string; value: string }[] };
+type CalculatorVisual = {
+  type: 'calculator';
+  formula: ImpactCalcFormula;
+  outputLabel: string;
+  outputDesc?: string;
+  baseline?: string;
+  /** For multiplier line (e.g. current public rating count) */
+  baselineCount?: number;
+};
 
-export type SolutionVisual = JourneyVisual | FunnelVisual | ChipsVisual;
+export type SolutionVisual = JourneyVisual | FunnelVisual | ChipsVisual | CalculatorVisual;
 
 export function SolutionBlock({
   index,
@@ -175,6 +191,7 @@ export function SolutionBlock({
 }) {
   const num = String(index).padStart(2, '0');
   const inline = visual?.type === 'journey' || visual?.type === 'chips';
+  const visualPanel = visual ? <SolutionVisualPanel visual={visual} inline={inline} /> : null;
 
   return (
     <article className={index === 1 ? 'pt-0' : 'border-t border-[var(--upstory-rule)] py-12'}>
@@ -190,7 +207,7 @@ export function SolutionBlock({
       >
         {children}
       </div>
-      {visual ? <SolutionVisualPanel visual={visual} inline={inline} /> : null}
+      {visualPanel}
     </article>
   );
 }
@@ -300,6 +317,15 @@ function SolutionVisualPanel({ visual, inline }: { visual: SolutionVisual; inlin
             </div>
           ))}
         </div>
+      )}
+      {visual.type === 'calculator' && (
+        <ImpactCalculator
+          formula={visual.formula}
+          outputLabel={visual.outputLabel}
+          outputDesc={visual.outputDesc}
+          baseline={visual.baseline}
+          baselineCount={visual.baselineCount}
+        />
       )}
     </div>
   );

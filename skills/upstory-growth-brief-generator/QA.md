@@ -4,19 +4,21 @@ Run this checklist **after** the page matches `FORMAT.md`. Use it before publish
 
 ## Outcome headline (quantified)
 
-- [ ] Headline states a **measurable outcome** (conversion, completion, activation, payment rate, etc.), not a vibe or strategy summary.
-- [ ] Includes a **number or defensible range** tied to that outcome (`by about 10%`, `+5–10 pp`, `within 30 days`).
-- [ ] Framed as **Upstory can help achieve it** (“We believe we can help…”), not “here is what you must do.”
+- [ ] States a **measurable outcome** you could track, not a vibe or strategy summary.
+- [ ] Uses a **specific quant** (rate, count, ratio, per-100, or time window). **No `about`, no `~`.**
+- [ ] Quant shape fits the company (not the same “lift by X%” line on every brief unless that is the honest read).
+- [ ] Framed as **We believe we can help…**, not “you need to.”
 - [ ] You could name the metric in a dashboard without rewriting the sentence.
 
-**Fail examples:** “Stake is at an inflection point.” / “Improve the onboarding experience.” / “Unlock growth on UMoveFree.”
+**Fail:** `…lift conversion by about 10%.` / `…unlock growth.` / `…at an inflection point.`
 
 ## Insight (`Our read`)
 
-- [ ] Supports the headline outcome; does **not** repeat the same number unless necessary.
+- [ ] Reads like a **talking point to them** (`you` / `your`), not an internal brief for Upstory.
+- [ ] Does **not** recap their news, funding, or launch they already know.
+- [ ] Does **not** open with “{event} is an opportunity to create value.”
+- [ ] One product-sharp observation + wedge + bridge to opportunities (max 3 sentences).
 - [ ] **Unique to this client** (swap company name and it should read false).
-- [ ] Opportunity framing (“opportunity to create value”), not empty hype (“exciting time,” “real opening”).
-- [ ] Max 3 sentences; bridges to “The opportunities below…”
 
 ## Voice and tone
 
@@ -52,11 +54,16 @@ Scan the full page for these patterns. Rewrite any hit.
 
 ## Artifacts
 
-- [ ] Each artifact **adds information** the prose does not already say (if you delete the visual, you lose something).
-- [ ] No filler visuals “because block 2 should have a funnel.”
-- [ ] Journey steps are **specific labels** for this company’s flow, not placeholders (`Step 1`, `Onboarding`).
-- [ ] Funnel percentages are **illustrative** when not from data, and labeled as such.
-- [ ] Artifacts use **full column width** — nothing looks artificially narrow or wrapped early.
+Run the **relevance test** in `FORMAT.md` for every visual. **Omit** if any check fails (nothing beats a wrong chart).
+
+- [ ] Artifact type matches the opportunity: **journey** = sequence/handoff; **funnel** = stage drop-off; **calculator** = sizing upside with sliders; **chips** = rare tag set; **none** = cohort/analytics/copy-only.
+- [ ] **Calculator** only when inputs are defensible and the block is about quantified upside; helper text says assumptions; not presented as their real data.
+- [ ] **0–2 artifacts** on the page is normal; three only if each block passes the test independently.
+- [ ] Highlighted step or key funnel stage = the moment the title says you would fix.
+- [ ] Labels are **client-specific**; swapping this visual to another block would break meaning.
+- [ ] Removing the visual loses order or relative drop the prose does not state.
+- [ ] No filler because “every brief needs a funnel on 02.”
+- [ ] Illustrative funnels labeled; no fake precision as their data.
 
 ## Structure and layout
 

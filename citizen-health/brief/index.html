@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Upstory for Citizen Health</title>
-  <link rel="stylesheet" href="/shared/brief.css">
+  <link rel="stylesheet" href="/shared/brief.css?v=plain-logo">
 </head>
 <body class="brief">
   <main class="page">
@@ -13,13 +13,11 @@
       <div class="brief-header-brands">
         <img class="brief-header-upstory" src="/shared/upstory-logo.png" alt="Upstory" />
         <span class="brief-header-for">for</span>
-        <div class="brief-header-client is-light-plate">
-          <img src="/shared/logos/citizen-health.svg" alt="Citizen Health" />
-        </div>
+        <img class="brief-header-logo" src="/shared/logos/citizen-health.svg" alt="Citizen Health" />
       </div>
     </header>
 
-    <h1 class="outcome">We believe we can help Citizen Health lift completed signups from homepage visitors by about 20%.</h1>
+    <h1 class="outcome">We believe we can help Citizen Health add 90 five-star App Store ratings in the next 90 days.</h1>
 
     <div class="insight-callout">
       <div class="insight-callout-head">
@@ -28,7 +26,7 @@
         </svg>
         <p class="insight-eyebrow">Our read</p>
       </div>
-      <p class="insight-body">The Series A and mobile launch are an opportunity to create value: families arrive with urgent caregiving questions. On the web signup, the AI Advocate should show its work before the email gate. The opportunities below are where we would focus.</p>
+      <p class="insight-body">When someone lands on your homepage, they are already leaning in on the problem. The signup flow still asks for email before the Advocate runs. Closing that gap is the fastest path to more accounts and more public proof. The opportunities below are where we would start.</p>
     </div>
 
     <div class="opportunities-intro">
@@ -65,29 +63,38 @@
           <p>You have nine public ratings today while in-product feedback is strongly positive. We would ask right after visit summary or a first successful record pull.</p>
         </div>
         <div class="visual">
-          <div class="vis-funnel">
-            <div class="vis-funnel-row">
-              <span>Homepage visit</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:100%"></div></div>
-              <span class="vis-funnel-pct">100</span>
+          <div class="vis-impact-calc" data-formula="app_store_ratings_90d" data-baseline="9">
+            <div class="vis-calc-inputs">
+              <div class="vis-calc-input" data-id="mau" data-format="number">
+                <div class="vis-calc-label-row">
+                  <span class="vis-calc-label">Monthly active users</span>
+                  <span class="vis-calc-value">3,000</span>
+                </div>
+                <input type="range" class="vis-calc-slider" min="500" max="20000" step="500" value="3000" />
+              </div>
+              <div class="vis-calc-input" data-id="prompt" data-format="percent">
+                <div class="vis-calc-label-row">
+                  <span class="vis-calc-label">Prompted at the right moment</span>
+                  <span class="vis-calc-value">40%</span>
+                </div>
+                <input type="range" class="vis-calc-slider" min="10" max="80" step="5" value="40" />
+              </div>
+              <div class="vis-calc-input" data-id="convert" data-format="percent">
+                <div class="vis-calc-label-row">
+                  <span class="vis-calc-label">Of prompted, who rate</span>
+                  <span class="vis-calc-value">8%</span>
+                </div>
+                <input type="range" class="vis-calc-slider" min="2" max="20" step="1" value="8" />
+              </div>
+              <p class="vis-calc-helper">Defaults reflect Apple's published benchmarks for in-app rating prompts. Drag any slider to see how the numbers move.</p>
             </div>
-            <div class="vis-funnel-row">
-              <span>Account created</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:48%"></div></div>
-              <span class="vis-funnel-pct">48</span>
-            </div>
-            <div class="vis-funnel-row">
-              <span>First session complete</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:31%"></div></div>
-              <span class="vis-funnel-pct">31</span>
-            </div>
-            <div class="vis-funnel-row is-key">
-              <span>5-star review submitted</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:4%"></div></div>
-              <span class="vis-funnel-pct">4</span>
+            <div class="vis-calc-output-pane">
+              <p class="vis-calc-out-label">New ratings in 90 days</p>
+              <p class="vis-calc-out-number" data-calc-output>288</p>
+              <p class="vis-calc-out-desc">If you prompt after a visit summary or record pull, not on a cold start.</p>
+              <p class="vis-calc-out-baseline">You have <strong>9 ratings</strong> public today. At these assumptions, that is <strong data-calc-multiplier>32×</strong> your public count today.</p>
             </div>
           </div>
-          <p style="margin:14px 0 0;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)">Illustrative. Where we would look first.</p>
         </div>
       </article>
 
@@ -98,13 +105,6 @@
         </div>
         <div class="solution-body">
           <p>Hold press-driven traffic and organic installs in parallel views so each experiment has a clean readout.</p>
-        </div>
-        <div class="visual is-inline">
-          <div class="vis-chips">
-            <div class="vis-chip"><span>North-star</span>Signup within 24h of visit</div>
-            <div class="vis-chip"><span>Cohort</span>Press week vs organic</div>
-            <div class="vis-chip"><span>Win</span>+100 ratings in 90 days</div>
-          </div>
         </div>
       </article>
     </section>
@@ -139,5 +139,6 @@
       <span class="footer-meta">&copy; Upstory 2026</span>
     </footer>
   </main>
+  <script src="/shared/brief-impact-calc.js"></script>
 </body>
 </html>

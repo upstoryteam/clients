@@ -79,11 +79,11 @@ Examples:
 
 **Insight** is the only block that should read completely different company to company. Headline, opportunities, artifacts, and measure bullets are derived from the CSV row but follow the same shape every time.
 
-**Artifacts** (`journey`, `funnel`, `chips`) are optional per block. They must add clarity, not fill space. Prefer one strong visual (often funnel on `02`). See `FORMAT.md` and `QA.md` artifact checks.
+**Artifacts** (`journey`, `funnel`, `chips`, `calculator`) are optional per block. They must add clarity, not fill space. Use **`calculator`** when the block sizes quantified upside (sliders + live result). See `FORMAT.md` and `QA.md`.
 
 **Before ship:** run every item in `QA.md` (tone, no AI gobbledygook, artifacts earn their space, layout not truncating).
 
-Headline must include a number or defensible range in a **we can help** frame. Map opportunities from **Outreach Insight** and **Hiring Focus**. Trust-type hints below are **starting angles** when the row is thin — not verbatim paste unless the row offers nothing specific.
+Headline must name a **measurable outcome** with a **specific quant** (rate, count, ratio, per-100, time window). Pick the shape that fits the row (`FORMAT.md` table). **No `about`.** Do not default every headline to “lift by X%.” Map opportunities from **Outreach Insight** and **Hiring Focus**. Trust-type hints are for thin rows only.
 
 ### Trust-type solution hints (for visuals + copy)
 
@@ -196,7 +196,9 @@ Warm `#fcfcfa`, Manrope + Source Serif 4, bronze accent. **700px** column; prose
 |------|------|
 | `FORMAT.md` | Locked six-block arc + layout rules |
 | `QA.md` | Pre-ship quality checklist (tone, artifacts, jargon) |
-| `brief-ui.tsx` | `BriefHeader`, `OutcomeHeadline`, `MainInsight`, `OpportunitiesIntro`, `SolutionBlock`, `WaysToMeasure`, `UpstoryCloser` |
+| `brief-ui.tsx` | Layout components + `SolutionBlock` visuals |
+| `brief-impact-calc.tsx` | Client-side impact calculator (`app_store_ratings_90d`, `umove_first_payment_lift`) |
+| `shared/brief-impact-calc.js` | Same calculators for static HTML briefs |
 | `shared/brief.css` | Static HTML/CSS mirror |
 | `examples/stake.tsx` | Filled reference brief |
 
@@ -222,7 +224,10 @@ Hard constraints.
 - **Em dashes** in page copy. Use periods or commas.
 - **Contrast pivots** that read like AI: “it’s not X, it’s Y,” “not X but Y,” or a positive clause followed by **“, not …”** (e.g. “within a week, not a month out”). Write what you mean in one affirmative sentence.
 - **actually**, **real** / **something real** / **a real [noun]** as hype or emphasis (the category phrase **real-world** is fine in internal docs only; do not use **real** on the brief page).
+- **about** and **~** in headlines (hedging).
+- Default headline template **lift … by X%** when another quant shape fits better.
 - AI-sounding language: "leverage" (as a noun), "synergy", "ecosystem", "unlock potential", "drive value", "best-in-class", "world-class", "deep dive", "circle back", "touch base", "make a dent", "move the needle".
+- Insight openers that recap their news or say **opportunity to create value**.
 - Closer fluff: "happy to chat", "if helpful", "would love to", "looking forward to hearing from you".
 - Decorative italics.
 - Summarizing what the recipient already knows.
@@ -253,9 +258,9 @@ For each company:
 3. **Derive slug** from Company Name.
 4. **Logo** — extract from company site; cache `shared/logos/<slug>.*` + `*.meta.json` per `LOGO-TONE.md`; stop if blocked.
 5. **Choose outcome metric** from Outreach Insight + Hiring Focus; pick headline quant (defensible range).
-6. **Write outcome headline** — partnership voice, number in sentence.
-7. **Write main insight** — unique to client; `Our read`; opportunity framing; max 3 sentences; bridge to opportunities.
-8. **Write three opportunities** — titles + ≤2 sentences each; attach artifacts only where they add clarity (see `FORMAT.md`).
+6. **Write outcome headline** — partnership voice; quant in the best shape for the metric (see `FORMAT.md`); no `about`.
+7. **Write main insight** — talking point to **them**; no news recap; product wedge; max 3 sentences; bridge to opportunities.
+8. **Write three opportunities** — titles + ≤2 sentences each. **Per block:** read `FORMAT.md` artifact guide → pick journey / funnel / chips / **none** only if the visual passes the relevance test (prefer none over wrong).
 9. **Write ways to measure** — default lead + 3 bullets tied to headline metric.
 10. **Assemble** from `scaffold.tsx` (closer/footer locked).
 11. **Run `QA.md`** — fix failures.
