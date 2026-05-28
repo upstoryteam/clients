@@ -1,13 +1,15 @@
 # Upstory Audits
 
-Static HTML audits Upstory sends to dream-client prospects. Each folder is one audit, fully self-contained.
+Static HTML audits Upstory sends to dream-client prospects. Each `<client>/` folder is one **URL** (`audits.example.com/<client>/`). Growth briefs share repo-level `shared/` assets; see **`DEPLOY.md`** before handoff.
 
 ## Structure
 
 Each `[client-name]/` folder contains:
 
-- `index.html` — the audit, with CSS, JS, fonts, logo, and any imagery inlined or referenced via CDN. No build step, no dependencies, no missing assets.
+- `index.html` — the page. Long audits (e.g. Citizen Health) keep assets in-folder; **growth briefs** link to `/shared/brief.css` and `/shared/logos/<slug>.*` (deploy the whole repo root).
 - `README.md` — internal notes (who it's for, when it was sent, status, any follow-up).
+
+The `shared/` folder holds cross-audit assets (Upstory logo, Rick photo) served at `/shared/` for growth brief closers and future audits.
 
 ## Deployment
 
@@ -16,7 +18,7 @@ Auto-deploys via Vercel to `audits.upstory.co` once DNS is wired. Path-based rou
 - `audits.upstory.co/citizen-health/`
 - `audits.upstory.co/[next-client]/`
 
-No `vercel.json` is required for static HTML at the root.
+`vercel.json` only sets `trailingSlash`. **Client handoff:** read `DEPLOY.md` (full-repo deploy vs per-folder pitfalls).
 
 ## Brand and voice
 
