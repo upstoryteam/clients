@@ -15,7 +15,9 @@ The `shared/` folder holds cross-audit assets (Upstory logo, Rick photo) served 
 
 Auto-deploys via Vercel to `audits.upstory.co` once DNS is wired. Path-based routing means each folder becomes a URL:
 
-- `audits.upstory.co/citizen-health/`
+- `audits.upstory.co/citizen-health/` (long-form audit)
+- `audits.upstory.co/citizen-health/brief/` (growth brief format)
+- `audits.upstory.co/stake/`, `audits.upstory.co/abby-care/` (growth briefs)
 - `audits.upstory.co/[next-client]/`
 
 `vercel.json` only sets `trailingSlash`. **Client handoff:** read `DEPLOY.md` (full-repo deploy vs per-folder pitfalls).
