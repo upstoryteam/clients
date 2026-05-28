@@ -4,40 +4,146 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Growth briefs — QA</title>
+  <title>Growth briefs — Upstory QA</title>
   <link rel="icon" href="/shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
   <link rel="icon" href="/shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-  <style>
-    body { font-family: system-ui, sans-serif; max-width: 42rem; margin: 2rem auto; padding: 0 1rem; color: #151d1f; }
-    h1 { font-size: 1.25rem; font-weight: 600; }
-    p { color: #5a6a6e; font-size: 0.9rem; }
-    ul { line-height: 1.9; padding-left: 1.25rem; }
-    a { color: #0d6e6e; }
-  </style>
+  <link rel="stylesheet" href="/shared/brief.css">
+  <link rel="stylesheet" href="/shared/qa-briefs.css">
 </head>
-<body>
-  <h1>Growth briefs — demo QA</h1>
-  <p>Canonical paths omit the trailing slash (e.g. <code>/dorsia</code> not <code>/dorsia/</code>).</p>
-  <ul>
-    <li><a href="/stake" target="_blank" rel="noopener">Stake</a></li>
-    <li><a href="/abby-care" target="_blank" rel="noopener">Abby Care</a></li>
-    <li><a href="/citizen-health/brief" target="_blank" rel="noopener">Citizen Health (brief)</a></li>
-    <li><a href="/akko" target="_blank" rel="noopener">Akko</a></li>
-    <li><a href="/cloaked" target="_blank" rel="noopener">Cloaked</a></li>
-    <li><a href="/eternal" target="_blank" rel="noopener">Eternal</a></li>
-    <li><a href="/dorsia" target="_blank" rel="noopener">Dorsia</a></li>
-    <li><a href="/caramel" target="_blank" rel="noopener">Caramel</a></li>
-    <li><a href="/brave" target="_blank" rel="noopener">Brave</a></li>
-    <li><a href="/whisker-labs" target="_blank" rel="noopener">Whisker Labs</a></li>
-    <li><a href="/vinovest" target="_blank" rel="noopener">Vinovest</a></li>
-    <li><a href="/goldin" target="_blank" rel="noopener">Goldin</a></li>
-    <li><a href="/poparide" target="_blank" rel="noopener">Poparide</a></li>
-    <li><a href="/portola" target="_blank" rel="noopener">Portola</a></li>
-    <li><a href="/legit-app" target="_blank" rel="noopener">LegitApp</a></li>
-    <li><a href="/winit" target="_blank" rel="noopener">WinIt</a></li>
-    <li><a href="/lolli" target="_blank" rel="noopener">Lolli</a></li>
-    <li><a href="/getmyboat" target="_blank" rel="noopener">Getmyboat</a></li>
-    <li><a href="/swifto" target="_blank" rel="noopener">Swifto</a></li>
-  </ul>
+<body class="brief qa-index">
+  <main class="page qa-page">
+    <header class="qa-header">
+      <img class="qa-logo" src="/shared/upstory-logo.png" alt="Upstory" width="140" height="40" />
+      <h1 class="qa-title">Growth brief previews</h1>
+      <p class="qa-lead">Priority 1 outreach drafts for internal review. Each row: what the company does, where we would start, and a link to the one-pager.</p>
+      <p class="qa-meta">Local: <code>./scripts/serve-local.sh</code> then <a href="http://127.0.0.1:8765/qa-briefs.html">127.0.0.1:8765/qa-briefs.html</a> · Live: <a href="https://upstory-audits.vercel.app/qa-briefs.html">upstory-audits.vercel.app</a></p>
+    </header>
+    <section class="qa-list">
+      <article class="qa-card">
+        <h2 class="qa-name">Abby Care</h2>
+        <p class="qa-about">Home care platform helping families hire Medicaid-paid caregivers across expanding states.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Unify training and Medicaid paperwork into one guided path to cut days-to-certification in each new state.</p>
+        <p class="qa-link"><a href="/abby-care">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">AKKO</h2>
+        <p class="qa-about">Device protection sold through partner embeds and checkout, now integrating Upsie.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Show coverage value before the partner commits engineering.</p>
+        <p class="qa-link"><a href="/akko">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Brave</h2>
+        <p class="qa-about">Privacy browser expanding Brave Search API and developer monetization beyond consumers.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Let developers run a live query before billing setup.</p>
+        <p class="qa-link"><a href="/brave">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Caramel</h2>
+        <p class="qa-about">Vehicle marketplace checkout and escrow for private-party sales, including eBay listings.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Front-load buyer protection before payment details.</p>
+        <p class="qa-link"><a href="/caramel">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Citizen Health</h2>
+        <p class="qa-about">Consumer health app for records, visit summaries, and care navigation.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Earn public App Store proof right after in-product wins instead of leading with email signup alone.</p>
+        <p class="qa-link"><a href="/citizen-health/brief">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Cloaked</h2>
+        <p class="qa-about">Identity privacy app moving from consumer aliases into enterprise workspace sales.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Lead with a usable alias before the enterprise contract ask.</p>
+        <p class="qa-link"><a href="/cloaked">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Dorsia</h2>
+        <p class="qa-about">Paid membership club for hard-to-book restaurants and global dining experiences.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Show a real reservation outcome before the membership fee.</p>
+        <p class="qa-link"><a href="/dorsia">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Eternal</h2>
+        <p class="qa-about">Performance health program for lifelong athletes combining labs, coaching, and visits.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Offer a performance snapshot before full intake.</p>
+        <p class="qa-link"><a href="/eternal">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Getmyboat</h2>
+        <p class="qa-about">Boat rental marketplace merging two large inventories into one booking experience.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Show total trip clarity before payment.</p>
+        <p class="qa-link"><a href="/getmyboat">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Goldin</h2>
+        <p class="qa-about">Collectibles auction house integrating tightly with eBay for high-value lots.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Confirm buyer funds and fees before the hammer drop.</p>
+        <p class="qa-link"><a href="/goldin">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">LegitApp</h2>
+        <p class="qa-about">Authentication service for luxury goods sold on marketplaces and social commerce.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Show what happens during authentication before the user commits.</p>
+        <p class="qa-link"><a href="/legit-app">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Lolli</h2>
+        <p class="qa-about">Bitcoin and cash-back rewards on everyday spend, now via card-linked offers with Kard.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Prove the reward before asking for card link.</p>
+        <p class="qa-link"><a href="/lolli">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Poparide</h2>
+        <p class="qa-about">Long-distance rideshare community with a million members across Canada.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Earn trust before the first message to a driver.</p>
+        <p class="qa-link"><a href="/poparide">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Portola</h2>
+        <p class="qa-about">Voice-first AI companion Tolan focused on character, memory, and conversation.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Make the first voice exchange feel complete before signup depth.</p>
+        <p class="qa-link"><a href="/portola">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Stake</h2>
+        <p class="qa-about">Renter cash-back product scaling after UMoveFree integration and new financing.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Prove the Cash Back payoff in the first session after handoff so more UMoveFree renters schedule first rent payment.</p>
+        <p class="qa-link"><a href="/stake">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Swifto</h2>
+        <p class="qa-about">On-demand dog walking and pet care, expanding through acquisition in new markets.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Set expectations before the Meet &amp; Greet is booked.</p>
+        <p class="qa-link"><a href="/swifto">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">The Arena</h2>
+        <p class="qa-about">SocialFi app on Avalanche with launchpad and DEX, integrating Arcade2Earn gaming rewards.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Preview mission rewards before wallet connect depth.</p>
+        <p class="qa-link"><a href="/the-arena">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Vinovest</h2>
+        <p class="qa-about">Fine wine and whiskey investing platform, recently acquired by StartEngine.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Show a sample portfolio outcome before the minimum transfer.</p>
+        <p class="qa-link"><a href="/vinovest">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">Whisker Labs</h2>
+        <p class="qa-about">Ting home electrical fire sensor distributed through insurer partnerships.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Make install success visible before the insurer report.</p>
+        <p class="qa-link"><a href="/whisker-labs">View brief</a></p>
+      </article>
+      <article class="qa-card">
+        <h2 class="qa-name">WinIt</h2>
+        <p class="qa-about">Legal-tech tools that guide consumers through disputes, tickets, and claims.</p>
+        <p class="qa-opp"><span class="qa-label">Opportunity</span> Walk users through evidence before they commit to filing.</p>
+        <p class="qa-link"><a href="/winit">View brief</a></p>
+      </article>
+    </section>
+    <footer class="footer">
+      <span>Internal only — not for client distribution as a list page.</span>
+      <span class="footer-meta">&copy; Upstory 2026</span>
+    </footer>
+  </main>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
 **Status:** Draft, in review
 
-**Live URL (once deployed):** `audits.upstory.co/citizen-health/`
+**Live URL (once deployed):** `audits.upstory.co/citizen-health`
 
 ## What's in this audit
 

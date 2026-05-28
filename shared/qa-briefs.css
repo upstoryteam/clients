@@ -1,0 +1,134 @@
+/* QA index — growth brief previews (uses brief.css tokens) */
+
+body.qa-index {
+  background: var(--bg);
+}
+
+.qa-page {
+  max-width: 640px;
+  padding-top: 48px;
+  padding-bottom: 56px;
+}
+
+.qa-header {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.qa-logo {
+  display: block;
+  height: auto;
+  max-width: 140px;
+  margin-bottom: 28px;
+}
+
+.qa-title {
+  margin: 0 0 12px;
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.qa-lead {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.qa-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.qa-meta code {
+  font-size: 0.78rem;
+  background: var(--surface);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.qa-meta a {
+  color: var(--bronze);
+  text-decoration: none;
+}
+
+.qa-meta a:hover {
+  text-decoration: underline;
+}
+
+.qa-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.qa-card {
+  margin: 0;
+  padding: 22px 24px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+
+.qa-name {
+  margin: 0 0 10px;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.qa-about,
+.qa-opp {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.qa-opp {
+  margin-bottom: 14px;
+}
+
+.qa-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.qa-link {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.qa-link a {
+  color: var(--bronze);
+  text-decoration: none;
+}
+
+.qa-link a:hover {
+  text-decoration: underline;
+}
+
+.qa-page .footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -384,6 +384,23 @@ BRIEFS: list[dict] = [
             "Recurring plan adoption in new markets versus NYC baseline.",
         ],
     },
+    {
+        "slug": "the-arena",
+        "name": "The Arena",
+        "logo_ext": "svg",
+        "headline": "We believe we can help The Arena lift Arcade mission activation to 35% of existing SocialFi users.",
+        "insight": "The Arcade2Earn acquisition folds gaming rewards into a SocialFi stack that already moves real volume. Creators and players meet new Mission Pool flows before they understand the payoff. The integration window is when first-session clarity matters most.",
+        "opps": [
+            ("01", "Preview mission rewards before wallet connect depth", "Gamers bail when crypto steps stack early. We'd start by showing a sample mission payout, then ask for wallet link.", "journey", [("Feed visit", False), ("Mission preview", True), ("Wallet linked", False)]),
+            ("02", "Map SocialFi users through first completed Arcade mission", "Acquisition adds a second activation curve. We'd start by instrumenting existing users from discovery through first mission complete.", "funnel", [("Mission started", 100, False), ("Onchain step done", 58, False), ("Reward claimed", 34, True)]),
+            ("03", "Keep launchpad, DEX, and feed feeling like one Arena", "Three surfaces can read as three products. We'd start by aligning status and reward language across the stack.", None, None),
+        ],
+        "measures": [
+            "Existing users starting an Arcade mission within seven days of announcement.",
+            "First mission completion rate among starters.",
+            "Repeat mission participation within 30 days of first claim.",
+        ],
+    },
 ]
 
 
@@ -486,20 +503,27 @@ LOGO_URLS = {
     "whisker-labs": "https://www.whiskerlabs.com/wp-content/uploads/2023/08/whisker-labs-logo.svg",
     "goldin": "https://d2tt46f3mh26nl.cloudfront.net/assets/images/logo/GoldinIcon.png",
     "eternal": "https://www.eternal.com/_astro/eternal_footer_logo.DyKavH3T.svg",
+    "the-arena": "https://arena.social/icons/logo.svg",
 }
 
 
-def download_logos():
+def download_logos(only_slugs: set[str] | None = None):
     LOGOS.mkdir(parents=True, exist_ok=True)
     for slug, url in LOGO_URLS.items():
+        if only_slugs is not None and slug not in only_slugs:
+            continue
         ext = Path(url.split("?", 1)[0]).suffix.lower() or ".svg"
         dest = LOGOS / f"{slug}{ext}"
-        urllib.request.urlretrieve(url, dest)
+        if dest.exists():
+            continue
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req) as resp:
+            dest.write_bytes(resp.read())
         print("downloaded", dest)
 
 
 def main(only_slugs: set[str] | None = None):
-    download_logos()
+    download_logos(only_slugs)
     for b in BRIEFS:
         if only_slugs is not None and b["slug"] not in only_slugs:
             continue

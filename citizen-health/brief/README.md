@@ -1,7 +1,7 @@
 # Citizen Health (growth brief)
 
 **Format:** Locked six-block growth brief (`FORMAT.md`).  
-**URL:** `audits.upstory.co/citizen-health/brief/`
+**URL:** `audits.upstory.co/citizen-health/brief`
 
 The long-form audit with interactive mocks lives at [`../`](../) (`/citizen-health/`).
 
