@@ -176,11 +176,26 @@ def entries() -> list[dict]:
 
 def render_card(e: dict) -> str:
     href = f"/{e['slug']}"
+    name = html.escape(e["name"])
+    about = html.escape(e["about"])
+    opp = html.escape(e["opportunity"])
     return f"""      <article class="qa-card">
-        <h2 class="qa-name">{html.escape(e['name'])}</h2>
-        <p class="qa-about">{html.escape(e['about'])}</p>
-        <p class="qa-opp"><span class="qa-label">Opportunity</span> {html.escape(e['opportunity'])}</p>
-        <p class="qa-link"><a href="{html.escape(href)}">View brief</a></p>
+        <header class="qa-card-head">
+          <h2 class="qa-name"><a href="{html.escape(href)}">{name}</a></h2>
+        </header>
+        <div class="qa-card-body">
+          <div class="qa-detail">
+            <span class="qa-label">About</span>
+            <p class="qa-about">{about}</p>
+          </div>
+          <div class="qa-detail">
+            <span class="qa-label">Opportunity</span>
+            <p class="qa-opp">{opp}</p>
+          </div>
+        </div>
+        <footer class="qa-card-foot">
+          <a class="qa-cta" href="{html.escape(href)}">View brief →</a>
+        </footer>
       </article>"""
 
 
