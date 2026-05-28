@@ -32,34 +32,12 @@ body.qa-index {
   color: var(--ink);
 }
 
-.qa-lead {
-  margin: 0 0 16px;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-
 .qa-meta {
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
   line-height: 1.5;
-  color: var(--ink-3);
-}
-
-.qa-meta code {
-  font-size: 0.78rem;
-  background: var(--surface);
-  padding: 2px 6px;
-  border-radius: 4px;
-}
-
-.qa-meta a {
-  color: var(--bronze);
-  text-decoration: none;
-}
-
-.qa-meta a:hover {
-  text-decoration: underline;
+  color: #b42318;
 }
 
 .qa-list {

@@ -198,23 +198,6 @@ BRIEFS: list[dict] = [
         ],
     },
     {
-        "slug": "brave",
-        "name": "Brave",
-        "logo_ext": "svg",
-        "headline": "We believe we can help Brave move 30% more developers from API key signup to first paid query.",
-        "insight": "Brave Search is a different product than the browser. Developers are being asked for billing before they have run a query that proves the index on their use case.",
-        "opps": [
-            ("01", "Let developers run a live query before billing setup", "Docs alone do not prove the index. We would ship a sandbox key with visible results, then ask for billing.", "journey", [("Docs visit", False), ("First query works", True), ("Billing added", False)]),
-            ("02", "Funnel API adoption from key created to production traffic", "Keys without traffic do not expand revenue. We would track activation through sustained query volume.", "funnel", [("API key issued", 100, False), ("First production query", 54, False), ("Paid tier active", 36, True)]),
-            ("03", "Tie Brave Rewards opt-in to the same trust pattern", "Browser users face a parallel commitment moment. We would reuse proof-before-ask components where it fits.", None, None),
-        ],
-        "measures": [
-            "New keys running a successful query within one hour.",
-            "Developers crossing 1,000 queries within 14 days of signup.",
-            "Paid conversion among keys with sustained weekly traffic.",
-        ],
-    },
-    {
         "slug": "whisker-labs",
         "name": "Whisker Labs",
         "logo_ext": "svg",

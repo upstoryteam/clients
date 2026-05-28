@@ -19,7 +19,7 @@ Auto-deploys via Vercel to `audits.upstory.co` once DNS is wired. Path-based rou
 - `audits.upstory.co/citizen-health/brief` (growth brief format)
 - `audits.upstory.co/stake`, `audits.upstory.co/abby-care` (growth briefs)
 - `audits.upstory.co/qa-briefs.html` (internal QA index — context + links to all growth briefs)
-- Priority 1 previews (draft): `akko/`, `cloaked/`, `eternal/`, `dorsia/`, `caramel/`, `brave/`, `whisker-labs/`, `vinovest/`, `goldin/`, `poparide/`, `portola/`, `legit-app/`, `winit/`, `lolli/`, `getmyboat/`, `swifto/`
+- Growth brief previews: see `qa-briefs.html` (P1–P4 outreach drafts; Brave omitted — existing client)
 - `audits.upstory.co/[next-client]`
 
 `vercel.json` only sets `trailingSlash`. **Client handoff:** read `DEPLOY.md` (full-repo deploy vs per-folder pitfalls).

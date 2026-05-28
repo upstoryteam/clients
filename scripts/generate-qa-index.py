@@ -18,6 +18,15 @@ _gen = importlib.util.module_from_spec(_spec)
 assert _spec.loader is not None
 _spec.loader.exec_module(_gen)
 
+_p2_spec = importlib.util.spec_from_file_location(
+    "briefs_p2_p4", Path(__file__).with_name("briefs_p2_p4.py")
+)
+_p2 = importlib.util.module_from_spec(_p2_spec)
+assert _p2_spec.loader is not None
+_p2_spec.loader.exec_module(_p2)
+
+EXCLUDE_SLUGS = _p2.EXCLUDE_SLUGS
+
 # Slug overrides for outreach `co` names
 CO_SLUG = {
     "Stake": "stake",
@@ -27,7 +36,6 @@ CO_SLUG = {
     "Eternal": "eternal",
     "Dorsia": "dorsia",
     "Caramel": "caramel",
-    "Brave": "brave",
     "Whisker Labs": "whisker-labs",
     "Vinovest (Acquired by StartEngine)": "vinovest",
     "Goldin": "goldin",
@@ -67,7 +75,6 @@ ABOUT_OVERRIDE = {
     "abby-care": "Home care platform helping families hire Medicaid-paid caregivers across expanding states.",
     "citizen-health/brief": "Consumer health app for records, visit summaries, and care navigation.",
     "akko": "Device protection sold through partner embeds and checkout, now integrating Upsie.",
-    "brave": "Privacy browser expanding Brave Search API and developer monetization beyond consumers.",
     "caramel": "Vehicle marketplace checkout and escrow for private-party sales, including eBay listings.",
     "cloaked": "Identity privacy app moving from consumer aliases into enterprise workspace sales.",
     "dorsia": "Paid membership club for hard-to-book restaurants and global dining experiences.",
@@ -120,22 +127,30 @@ def entries() -> list[dict]:
     for item in MANUAL:
         by_slug[item["slug"]] = item
 
-    for b in _gen.BRIEFS:
+    def add_brief(b: dict, about_key: str | None = None) -> None:
         slug = b["slug"]
+        if slug in EXCLUDE_SLUGS:
+            return
         opp_title = b["opps"][0][1] if b.get("opps") else ""
         opportunity = opp_title or b["headline"]
         if opportunity and opportunity[0].islower():
             opportunity = opportunity[0].upper() + opportunity[1:]
         if opportunity and not opportunity.endswith("."):
             opportunity += "."
+        about = b.get("about") or ABOUT_OVERRIDE.get(slug) or about_json.get(slug or "")
+        if not about:
+            about = first_sentence(b.get("insight", ""))
         by_slug[slug] = {
             "slug": slug,
             "name": b["name"],
-            "about": ABOUT_OVERRIDE.get(slug)
-            or about_json.get(slug)
-            or first_sentence(b.get("insight", "")),
+            "about": about,
             "opportunity": opportunity,
         }
+
+    for b in _gen.BRIEFS:
+        add_brief(b)
+    for b in _p2.BRIEFS_P2_P4:
+        add_brief(b)
 
     return sorted(by_slug.values(), key=lambda x: x["name"].lower())
 
@@ -169,8 +184,7 @@ def render_page(items: list[dict]) -> str:
     <header class="qa-header">
       <img class="qa-logo" src="/shared/upstory-logo.png" alt="Upstory" width="140" height="40" />
       <h1 class="qa-title">Growth brief previews</h1>
-      <p class="qa-lead">Priority 1 outreach drafts for internal review. Each row: what the company does, where we would start, and a link to the one-pager.</p>
-      <p class="qa-meta">Local: <code>./scripts/serve-local.sh</code> then <a href="http://127.0.0.1:8765/qa-briefs.html">127.0.0.1:8765/qa-briefs.html</a> · Live: <a href="https://upstory-audits.vercel.app/qa-briefs.html">upstory-audits.vercel.app</a></p>
+      <p class="qa-meta">For internal review only</p>
     </header>
     <section class="qa-list">
 {cards}
