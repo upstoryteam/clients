@@ -517,7 +517,7 @@ def main(only_slugs: set[str] | None = None):
         )
         readme = f"""# {b['name']} growth brief
 
-Priority 1 outreach preview. Live at `/ {b['slug']}/` after deploy.
+Priority 1 outreach preview. Live at `/{b['slug']}` after deploy.
 
 Status: draft for internal audit.
 """

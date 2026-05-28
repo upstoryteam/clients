@@ -6,8 +6,8 @@ Each company brief lives in its **own URL path**, not its own isolated folder on
 
 | Path on site | Files in repo |
 |--------------|----------------|
-| `https://audits.example.com/stake/` | `stake/index.html` |
-| `https://audits.example.com/citizen-health/` | `citizen-health/index.html` (separate audit format) |
+| `https://audits.example.com/stake` | `stake/index.html` |
+| `https://audits.example.com/citizen-health` | `citizen-health/index.html` (separate audit format) |
 | `https://audits.example.com/shared/...` | `shared/*` (shared by all growth briefs) |
 
 **One Vercel (or static) project deploys the whole repo root.** Path-based routing serves each `/<slug>/index.html`. There are **no links between briefs**; pages do not reference each other.
@@ -36,7 +36,7 @@ Fonts load from Google Fonts via `brief.css` (network required).
 3. Keep **`shared/`** and every **`<slug>/`** folder in the same deployment.
 4. Do **not** need `skills/` for production (agent tooling only; optional to omit from deploy or leave in repo).
 
-Result: `/stake/`, `/shared/brief.css`, etc. all resolve. Adding a new brief = new `<slug>/` folder + logo in `shared/logos/` + redeploy.
+Result: `/stake`, `/shared/brief.css`, etc. all resolve. URLs omit trailing slashes (`vercel.json` → `trailingSlash: false`). Adding a new brief = new `<slug>/` folder + logo in `shared/logos/` + redeploy.
 
 ### Option B — One folder per deploy (not supported out of the box)
 
