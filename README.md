@@ -19,7 +19,7 @@ Auto-deploys via Vercel to `audits.upstory.co` once DNS is wired. Path-based rou
 - `audits.upstory.co/citizen-health/brief` (growth brief format)
 - `audits.upstory.co/stake`, `audits.upstory.co/abby-care` (growth briefs)
 - `audits.upstory.co/qa-briefs.html` (internal QA index — context + links to all growth briefs)
-- Growth brief previews: see `qa-briefs.html` (P1–P4 outreach drafts; Brave omitted — existing client)
+- Growth brief previews: see `qa-briefs.html` — **41 companies** (40 from `_all_contacts_for_personalization.json` minus Brave, plus Citizen Health brief). The JSON has **94 contact rows** but only **41 unique companies**. Run `python3 scripts/check-brief-coverage.py` to verify coverage.
 - `audits.upstory.co/[next-client]`
 
 `vercel.json` only sets `trailingSlash`. **Client handoff:** read `DEPLOY.md` (full-repo deploy vs per-folder pitfalls).
