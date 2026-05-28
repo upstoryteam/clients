@@ -12,7 +12,7 @@ Read **`FORMAT.md`** before generating.
 
 1. **Co-branded header** — Upstory for client logo  
 2. **Outcome headline** — quantified, “We believe we can help…”  
-3. **Insight** — `Our read` (unique per client)  
+3. **Insight** — `What we see` (unique per client, plain language to them)  
 4. **Opportunities** — `01`–`03` + optional artifacts (`journey`, `funnel`, `chips`)  
 5. **Ways to measure success** — three bullets  
 6. **Pitch** — locked Upstory closer + footer  

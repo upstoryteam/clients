@@ -106,8 +106,8 @@ BRIEFS: list[dict] = [
         "slug": "akko",
         "name": "AKKO",
         "logo_ext": "svg",
-        "headline": "We believe we can help AKKO cut partner time-to-first-sale by 30 days after the Upsie integration.",
-        "insight": "Channel Partners put partner launch speed on the table. The Upsie integration only pays off when embed and checkout feel turnkey. We would focus on the partner-facing activation path before scaling outbound.",
+        "headline": "We believe we can help AKKO shorten partner time-to-first policy sale after the Upsie integration.",
+        "insight": "You are scaling partner distribution after Upsie, and partners only win when embed and checkout feel turnkey. The break is the path from signed partner to first policy sold.",
         "opps": [
             ("01", "Show coverage value before the partner commits engineering", "Partners decide on a demo, not a deck. We would lead with a live checkout snippet and claims story, then open the integration checklist.", "journey", [("Partner interest", False), ("Live embed demo", True), ("First policy sold", False)]),
             ("02", "Treat first end-customer purchase as the proof metric", "Partner revenue shows up when a real customer completes protection signup. We would map every step from partner launch to first paid policy.", "funnel", [("Partner live", 100, False), ("First quote", 55, False), ("Policy purchased", 32, True)]),
@@ -123,8 +123,8 @@ BRIEFS: list[dict] = [
         "slug": "cloaked",
         "name": "Cloaked",
         "logo_ext": "svg",
-        "headline": "We believe we can help Cloaked lift enterprise trial-to-paid conversion by 25% in the next two quarters.",
-        "insight": "The Series B push is into enterprise, but the product still wins on consumer-grade polish. Identity creation is the wedge. If professional onboarding feels as fast as the consumer app, expansion keeps pace with the raise.",
+        "headline": "We believe we can help Cloaked lift enterprise trial-to-paid conversion by 25%.",
+        "insight": "You are pushing into enterprise while the product still wins on consumer polish. People need to feel a live identity in the first minute, the same way they do on the consumer app.",
         "opps": [
             ("01", "Lead with a usable alias before the enterprise contract ask", "Buyers need to feel Cloaked working in minute one. We would open with a generated identity and one protected action, then invite workspace setup.", "journey", [("Trial start", False), ("First alias live", True), ("Workspace invite", False)]),
             ("02", "Design the seat expansion moment around team invites", "Enterprise growth lives in invite acceptance, not top-of-funnel ads. We would map admin setup through first teammate protected.", "funnel", [("Admin signup", 100, False), ("Policy configured", 68, False), ("Teammate active", 41, True)]),
@@ -140,8 +140,8 @@ BRIEFS: list[dict] = [
         "slug": "eternal",
         "name": "Eternal",
         "logo_ext": "svg",
-        "headline": "We believe we can help Eternal lift athlete enrollment completion to 65% within 60 days of first visit.",
-        "insight": "The clinical story is strong on the inside. Public enrollment still asks athletes to commit before they have felt the performance model. The first session outcome should arrive before the long intake form.",
+        "headline": "We believe we can help Eternal lift athlete enrollment completion to 65%.",
+        "insight": "Your clinical model is strong. On the public site, athletes are still asked to commit before they have felt what performance care looks like from you. The long intake form comes before the first win.",
         "opps": [
             ("01", "Offer a performance snapshot before full intake", "Athletes arrive skeptical of another health portal. We would show a sample benchmark, then ask for labs and history.", "journey", [("Landing visit", False), ("Performance preview", True), ("Enrollment complete", False)]),
             ("02", "Shorten the path from interest to first scheduled visit", "Enrollment drop-off clusters between form submit and calendar hold. We would surface scheduling while motivation is high.", "funnel", [("Started enrollment", 100, False), ("Intake complete", 58, False), ("First visit booked", 38, True)]),
@@ -157,8 +157,8 @@ BRIEFS: list[dict] = [
         "slug": "dorsia",
         "name": "Dorsia",
         "logo_ext": "svg",
-        "headline": "We believe we can help Dorsia convert 20% more membership applicants to paid members within 90 days.",
-        "insight": "Membership is a pay-before-you-experience proposition. Culture Calendar and wallet features add complexity at the wrong moment if the first reservation still feels uncertain. We would tighten apply-to-first-booking.",
+        "headline": "We believe we can help Dorsia convert 20% more membership applicants to paid members.",
+        "insight": "Members pay before they have experienced the network. If the first reservation still feels uncertain, Culture Calendar and wallet work do not get a chance to matter. The break is apply through first booking.",
         "opps": [
             ("01", "Show a real reservation outcome before the membership fee", "Applicants need proof the network is alive. We would surface one credible experience preview, then ask for payment.", "journey", [("Application", False), ("Experience preview", True), ("Membership paid", False)]),
             ("02", "Map drop-off from approved member to first booking", "Paid members who never book churn quietly. We would instrument the first reservation funnel end to end.", "funnel", [("Member approved", 100, False), ("Wallet connected", 72, False), ("First reservation", 44, True)]),
@@ -175,7 +175,7 @@ BRIEFS: list[dict] = [
         "name": "Caramel",
         "logo_ext": "png",
         "headline": "We believe we can help Caramel lift eBay checkout completion by 15% on private-party listings.",
-        "insight": "Checkout inside eBay is not your UI, but it is your conversion problem. Buyers did not choose Caramel. They need trust signals and clarity before they fund a high-ticket vehicle or collectible purchase.",
+        "insight": "Checkout inside eBay is not your UI, but it is your conversion problem. Buyers did not choose Caramel. They need trust and clarity before they fund a high-ticket purchase.",
         "opps": [
             ("01", "Front-load buyer protection before payment details", "Marketplace buyers fear scams. We would lead with escrow and title clarity, then collect payment.", "journey", [("Listing click", False), ("Protection explained", True), ("Payment submitted", False)]),
             ("02", "Reduce steps from checkout start to funds committed", "Every extra screen costs GMV on mobile. We would map abandonment between start and confirm.", "funnel", [("Checkout started", 100, False), ("Buyer verified", 71, False), ("Purchase complete", 48, True)]),
@@ -191,8 +191,8 @@ BRIEFS: list[dict] = [
         "slug": "brave",
         "name": "Brave",
         "logo_ext": "svg",
-        "headline": "We believe we can help Brave move 30% more developers from API key signup to first paid query within 30 days.",
-        "insight": "Brave Search as a platform is a different promise than the browser. Developers commit billing before they have seen index quality on their own queries. The first successful API call should land before the card form.",
+        "headline": "We believe we can help Brave move 30% more developers from API key signup to first paid query.",
+        "insight": "Brave Search is a different product than the browser. Developers are being asked for billing before they have run a query that proves the index on their use case.",
         "opps": [
             ("01", "Let developers run a live query before billing setup", "Docs alone do not prove the index. We would ship a sandbox key with visible results, then ask for billing.", "journey", [("Docs visit", False), ("First query works", True), ("Billing added", False)]),
             ("02", "Funnel API adoption from key created to production traffic", "Keys without traffic do not expand revenue. We would track activation through sustained query volume.", "funnel", [("API key issued", 100, False), ("First production query", 54, False), ("Paid tier active", 36, True)]),
@@ -208,8 +208,8 @@ BRIEFS: list[dict] = [
         "slug": "whisker-labs",
         "name": "Whisker Labs",
         "logo_ext": "svg",
-        "headline": "We believe we can help Whisker Labs reach 80% Ting device activation within 14 days of ship.",
-        "insight": "Insurer partnerships scale when homeowners actually install Ting. The hardware is only valuable after setup finishes and alerts feel trustworthy. That onboarding window is the product moment partners measure.",
+        "headline": "We believe we can help Whisker Labs lift Ting device activation to 80% after devices ship.",
+        "insight": "Ting only matters once it is installed and alerting. Your insurer partners are measured on activation, and homeowners still drop off between the box arriving and a live sensor.",
         "opps": [
             ("01", "Make install success visible before the insurer report", "Homeowners need confidence the sensor works. We would confirm live readings in app before asking them to ignore the box.", "journey", [("Kit arrives", False), ("Sensor online", True), ("Alert test passed", False)]),
             ("02", "Map insurer-led enrollment through first active day", "Ship-to-silent devices hurt renewal. We would track ship, install, and first alert sent.", "funnel", [("Device shipped", 100, False), ("App paired", 67, False), ("Active monitoring", 52, True)]),
@@ -225,8 +225,8 @@ BRIEFS: list[dict] = [
         "slug": "vinovest",
         "name": "Vinovest",
         "logo_ext": "png",
-        "headline": "We believe we can help Vinovest fund 25% more new accounts within 45 days on StartEngine.",
-        "insight": "The StartEngine network brings volume, but wine investing still asks for money before portfolio proof. Funding and first allocation are the trust handoff inside a bigger audience.",
+        "headline": "We believe we can help Vinovest fund 25% more new accounts on StartEngine.",
+        "insight": "The StartEngine audience is bigger, but the same moment still decides trust: money moves only after someone believes the portfolio is real.",
         "opps": [
             ("01", "Show a sample portfolio outcome before the minimum transfer", "New investors need to see how capital maps to bottles. We would preview holdings, then ask for funding.", "journey", [("Account opened", False), ("Portfolio preview", True), ("First transfer", False)]),
             ("02", "Tighten KYC-to-first-allocation completion", "Drop-off between verification and first buy is expensive on paid traffic. We would shorten that bridge.", "funnel", [("Signup", 100, False), ("KYC cleared", 63, False), ("First allocation", 39, True)]),
@@ -243,7 +243,7 @@ BRIEFS: list[dict] = [
         "name": "Goldin",
         "logo_ext": "svg",
         "headline": "We believe we can help Goldin lift winning-bid payment completion to 92% on high-value lots.",
-        "insight": "eBay scale raises the stakes on checkout trust. Bidders commit large sums after adrenaline fades. Consignors need the same clarity on payouts. Both sides need proof before the wire.",
+        "insight": "eBay scale raises the stakes on checkout trust. Bidders commit large sums after the adrenaline fades. Consignors need the same clarity on payouts before anyone wires funds.",
         "opps": [
             ("01", "Confirm buyer funds and fees before the hammer drop", "Last-second surprises kill completion. We would show all-in cost during bidding, not after win.", "journey", [("Bid placed", False), ("All-in price shown", True), ("Payment cleared", False)]),
             ("02", "Map win-to-paid for bidders and consignors separately", "Two-sided marketplaces fail in the handoff. We would funnel each side with its own proof moment.", "funnel", [("Auction won", 100, False), ("Payment started", 78, False), ("Funds settled", 71, True)]),
@@ -259,8 +259,8 @@ BRIEFS: list[dict] = [
         "slug": "poparide",
         "name": "Poparide",
         "logo_ext": "png",
-        "headline": "We believe we can help Poparide book a first trip for 40% of new members within 21 days.",
-        "insight": "One million members is proof the model works. The next million will expose verification and first-trip friction. Carpooling is a real-world commitment. Riders need trust before they sit in a stranger's car.",
+        "headline": "We believe we can help Poparide book a first trip for 40% of new members.",
+        "insight": "You have proof the model works at a million members. The next wave will surface verification and first-trip friction. Riders need trust before they get in a stranger's car.",
         "opps": [
             ("01", "Earn trust before the first message to a driver", "Profiles matter more than search filters. We would verify identity and show trip history cues up front.", "journey", [("Profile created", False), ("ID verified", True), ("First message", False)]),
             ("02", "Funnel new members to a booked trip", "Many members never leave browse. We would map signup through confirmed seat.", "funnel", [("Member joined", 100, False), ("Search to contact", 61, False), ("Trip booked", 37, True)]),
@@ -331,9 +331,9 @@ def render_page(b: dict) -> str:
     <div class="insight-callout">
       <div class="insight-callout-head">
 {INSIGHT_ICON}
-        <p class="insight-eyebrow">Our read</p>
+        <p class="insight-eyebrow">What we see</p>
       </div>
-      <p class="insight-body">{b['insight']} The opportunities below are where we would start.</p>
+      <p class="insight-body">{b['insight']}</p>
     </div>
 
     <div class="opportunities-intro">

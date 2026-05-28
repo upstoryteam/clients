@@ -72,7 +72,7 @@ Examples:
 |-------|--------|--------|
 | 1 | **Co-branded header** | `BriefHeader` — Upstory for client logo; see `LOGO-TONE.md` |
 | 2 | **Outcome headline** | `OutcomeHeadline` — Manrope, quantified, “We believe we can help…” |
-| 3 | **Insight** | `MainInsight` — eyebrow `Our read`, lightbulb, **unique per client**, max 3 sentences |
+| 3 | **Insight** | `MainInsight` — eyebrow `What we see`, lightbulb, **unique per client**, max 3 sentences |
 | 4 | **Opportunities** | `OpportunitiesIntro` + three `SolutionBlock`s — optional **artifacts** per block |
 | 5 | **Ways to measure success** | `WaysToMeasure` — three bronze-dot bullets, same metric as headline |
 | 6 | **Pitch** | `UpstoryCloser` + `BriefFooter` — **locked** copy |
@@ -83,7 +83,7 @@ Examples:
 
 **Before ship:** run every item in `QA.md` (tone, no AI gobbledygook, artifacts earn their space, layout not truncating).
 
-Headline must name a **measurable outcome** with a **specific quant** (rate, count, ratio, per-100, time window). Pick the shape that fits the row (`FORMAT.md` table). **No `about`.** Do not default every headline to “lift by X%.” Map opportunities from **Outreach Insight** and **Hiring Focus**. Trust-type hints are for thin rows only.
+Headline must name a **measurable outcome** with a **specific quant** (rate, count, ratio, per-100). Pick the shape that fits the row (`FORMAT.md` table). **No `about`.** **No deadline windows in the headline** (no `within 90 days`, `in the next quarter`). Do not default every headline to “lift by X%.” Map opportunities from **Outreach Insight** and **Hiring Focus**. Trust-type hints are for thin rows only.
 
 ### Trust-type solution hints (for visuals + copy)
 

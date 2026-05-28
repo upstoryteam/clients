@@ -140,7 +140,7 @@ export function OutcomeHeadline({ children }: { children: ReactNode }) {
 }
 
 export function MainInsight({
-  eyebrow = 'Our read',
+  eyebrow = 'What we see',
   children,
 }: {
   eyebrow?: ReactNode;

@@ -32,13 +32,13 @@ export default function StakePage() {
         />
 
         <OutcomeHeadline>
-          We believe we can help Stake move 40% of UMoveFree renters to first rent payment within 30 days.
+          We believe we can help Stake move 40% of UMoveFree renters to first rent payment.
         </OutcomeHeadline>
 
         <MainInsight>
           <p>
-            You have a short window right after UMoveFree handoff while renters still have the apartment math in mind. Cash
-            Back should land in that first session. The opportunities below are where we would start.
+            Right after the UMoveFree handoff, renters still have the apartment math in their head. That is when Cash Back
+            needs to feel real, in the same session, not later in onboarding.
           </p>
         </MainInsight>
 

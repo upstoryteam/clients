@@ -8,7 +8,7 @@ One page. Six blocks in a fixed order. **Do not add sections.** Reference implem
 |---|--------|-------------------|------------------|
 | 1 | **Co-branded header** | `BriefHeader` | Logo + tone metadata per company |
 | 2 | **Outcome headline** | `OutcomeHeadline` | Yes — metric + quantified claim |
-| 3 | **Insight** | `MainInsight` (`Our read` + lightbulb) | Yes — unique per client |
+| 3 | **Insight** | `MainInsight` (`What we see` + lightbulb) | Yes — unique per client |
 | 4 | **Opportunities** | `OpportunitiesIntro` + `SolutionBlock` × 3 | Yes — titles, prose, artifacts |
 | 5 | **Ways to measure success** | `WaysToMeasure` | Yes — three bullets tied to headline metric |
 | 6 | **Pitch** | `UpstoryCloser` + `BriefFooter` | Locked copy (do not paraphrase) |
@@ -32,31 +32,31 @@ Nothing else: no second hero, no “why this fits” essay, no numbered measurem
 - **Font:** Manrope, one line when possible.
 - **Voice:** partnership, not lecture. Lead with **We believe we can help {CasualizedName}…**
 - **Outcome (required):** one **measurable result** (same metric family as **Ways to measure success**).
-- **Quant (required):** a specific number, rate, count, or window. Write it like a target you would put in a brief to a CEO, not a hedge.
+- **Quant (required):** a specific number, rate, count, or ratio. Write it like a target you would put in a brief to a CEO, not a hedge.
 
 **Pick the quant shape that fits the row** (do not default to “lift by X%”):
 
 | Shape | Example |
 |-------|---------|
-| **Rate + window** | `…move 40% of UMoveFree renters to first rent payment within 30 days.` |
+| **Rate** | `…move 40% of UMoveFree renters to first rent payment.` |
 | **Increment per 100** | `…get 8 more first rent payments per 100 UMoveFree signups.` |
-| **Absolute count + window** | `…add 90 five-star App Store ratings in the next 90 days.` |
-| **Ratio** | `…turn 1 in 4 homepage visitors into an account within 24 hours.` |
-| **Time-to-outcome** | `…cut median days-to-certification to 45 in each new state.` |
+| **Absolute count** | `…add 90 five-star App Store ratings.` |
+| **Ratio** | `…turn 1 in 4 homepage visitors into an account.` |
+| **Time-to-outcome (metric itself)** | `…cut median days-to-certification to 45 in each new state.` |
 
-**Hard avoids:** `about`, `~`, `lift … by X%` as a lazy template, inflection-point rhetoric, unmeasured “improve onboarding,” strategy essays.
+**Hard avoids:** `about`, `~`, **deadline windows in the headline** (`within 30 days`, `in the next 90 days`, `by Q3`), `lift … by X%` as a lazy template, inflection-point rhetoric, unmeasured “improve onboarding,” strategy essays. Leading indicators in **Ways to measure** may still use time windows.
 
 ---
 
-## 3. Insight (`Our read`)
+## 3. Insight (`What we see`)
 
-Warm card under the headline. This is a **talking point in the room**, not an internal research recap.
+Warm card under the headline. This is what you would **say to them on a call**, not an internal research recap or memo to Upstory.
 
-- **Eyebrow (locked):** `Our read` only.
+- **Eyebrow (locked):** `What we see` only.
 - **Body:** Source Serif 4, **max 3 sentences**, full width of the card.
-- **Audience:** write to **them** (`you` / `your` where natural). It should sound like the opener on a call, not a memo for Upstory.
-- **Do not:** restate their funding, launch, or press back to them; open with “{News} is an opportunity to create value”; summarize what they already told you in the CSV.
-- **Do:** one sharp observation from looking at the product or funnel; where the wedge is in the UI or journey; bridge to **The opportunities below are where we would start** (or close variant).
+- **Audience:** write to **them** (`you` / `your` where natural). Plain language. They should feel you looked at the product and are handing them the insight, not reporting on a dossier.
+- **Do not:** restate their funding, launch, or press back to them; open with “{News} is an opportunity to create value”; use internal phrasing (`our read`, `we would focus`, `from the outside`, `the opportunity is`); sound like a brief **to** your team.
+- **Do:** one sharp observation from the product or funnel; where the wedge is in the UI or journey; optional short bridge to the opportunities section (`Here's where we'd start in the product.` or similar).
 
 **Fail:** `The Series A and mobile launch are an opportunity to create value: families arrive with urgent questions.`
 
@@ -114,7 +114,7 @@ Typical page: **1–2 artifacts total**. Never assign `01` journey / `02` funnel
 | Stake | 02 First rent payment | `funnel` | Drop-off from signup to payment |
 | Stake | 03 Cohort measurement | **none** | Analytics; measure section owns metrics |
 | Citizen | 01 Demo before email | `journey` | Sequence: visit → demo → signup |
-| Citizen | 02 App Store reviews | `calculator` | Interactive sizing of ratings in 90 days (MAU × prompt × convert) |
+| Citizen | 02 App Store reviews | `calculator` | Interactive sizing of projected ratings (MAU × prompt × convert) |
 | Citizen | 03 Cohort readout | **none** | Instrumentation, not a flow diagram |
 | Abby | 01 One guided path | `journey` | Apply → training/forms → certified |
 | Abby | 02 First paid shift | `funnel` | Application → approval → first shift |

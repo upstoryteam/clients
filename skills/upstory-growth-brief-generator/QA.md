@@ -5,15 +5,16 @@ Run this checklist **after** the page matches `FORMAT.md`. Use it before publish
 ## Outcome headline (quantified)
 
 - [ ] States a **measurable outcome** you could track, not a vibe or strategy summary.
-- [ ] Uses a **specific quant** (rate, count, ratio, per-100, or time window). **No `about`, no `~`.**
+- [ ] Uses a **specific quant** (rate, count, ratio, per-100). **No `about`, no `~`, no deadline in the headline** (`within 90 days`, `by Q3`).
 - [ ] Quant shape fits the company (not the same “lift by X%” line on every brief unless that is the honest read).
 - [ ] Framed as **We believe we can help…**, not “you need to.”
 - [ ] You could name the metric in a dashboard without rewriting the sentence.
 
 **Fail:** `…lift conversion by about 10%.` / `…unlock growth.` / `…at an inflection point.`
 
-## Insight (`Our read`)
+## Insight (`What we see`)
 
+- [ ] Eyebrow is **`What we see`**, not `Our read` or other internal labels.
 - [ ] Reads like a **talking point to them** (`you` / `your`), not an internal brief for Upstory.
 - [ ] Does **not** recap their news, funding, or launch they already know.
 - [ ] Does **not** open with “{event} is an opportunity to create value.”
@@ -69,7 +70,7 @@ Run the **relevance test** in `FORMAT.md` for every visual. **Omit** if any chec
 
 - [ ] Exactly six blocks in order: header → headline → insight → opportunities → ways to measure → pitch.
 - [ ] No extra sections (fit essay, second hero, solution essays).
-- [ ] `Our read` layout: lightbulb + eyebrow on one row; body left-aligned below.
+- [ ] `What we see` layout: lightbulb + eyebrow on one row; body left-aligned below.
 - [ ] Opportunity spacing reads comfortable (not cramped between `01` / `02` / `03`).
 
 ## Measurement block
