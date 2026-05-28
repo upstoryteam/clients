@@ -5,7 +5,7 @@ description: Generate one Upstory growth brief page (headline → insight → op
 
 # Upstory Growth Brief Generator
 
-A skill for producing one cold-outreach brief page at a time from structured company research. Each page is a short, confident strategy memo that lives at `audits.upstory.co/<company-slug>` and gets linked from a personal email to a senior leader at the recipient company.
+A skill for producing one cold-outreach brief page at a time from structured company research. Each page is a short, confident strategy memo that lives at `clients.upstory.co/<company-slug>` and gets linked from a personal email to a senior leader at the recipient company.
 
 ## When to use
 
@@ -155,7 +155,7 @@ Trust-type measurement defaults when the row is thin:
 
 ### Upstory closer (locked layout, block 6)
 
-Matches the [Citizen Health audit](https://upstory-audits.vercel.app/citizen-health/) closer: Upstory owns the bottom; all company value sits above.
+Matches the [Citizen Health audit](https://clients.upstory.co/citizen-health/) closer: Upstory owns the bottom; all company value sits above.
 
 **Structure (use `UpstoryCloser` in `scaffold.tsx`):**
 

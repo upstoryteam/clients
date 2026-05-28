@@ -49,9 +49,9 @@ CO_TO_SLUG = {
     "Modak": "modak",
     "Trustworthy": "trustworthy",
     "HOOPT": "hoopt",
+    "Citizen": "citizen-health",
+    "Citizen Health": "citizen-health",
 }
-
-EXTRA_BRIEFS = ["citizen-health/brief"]
 
 # ICP sheet Wave 1 (no JSON contacts yet); Leafwell and Citizen excluded from generation
 SHEET_WAVE1_SLUGS = [
@@ -74,8 +74,6 @@ def main():
         if not slug or not (ROOT / slug / "index.html").is_file():
             missing.append(co)
 
-    extra_ok = all((ROOT / p / "index.html").is_file() for p in EXTRA_BRIEFS)
-
     print(f"Outreach rows (contacts): {rows}")
     print(f"Unique companies in JSON: {len(companies)}")
     print(f"Excluded (existing client): {', '.join(sorted(EXCLUDE))}")
@@ -84,7 +82,6 @@ def main():
     if missing:
         for co in missing:
             print(f"  - {co}")
-    print(f"Extra briefs (not in JSON): {', '.join(EXTRA_BRIEFS)} ({'ok' if extra_ok else 'MISSING'})")
     sheet_missing = [s for s in SHEET_WAVE1_SLUGS if not (ROOT / s / "index.html").is_file()]
     print(f"Sheet wave 1 briefs: {len(SHEET_WAVE1_SLUGS) - len(sheet_missing)}/{len(SHEET_WAVE1_SLUGS)}")
     if sheet_missing:

@@ -54,7 +54,8 @@ CO_SLUG = {
     "Getmyboat": "getmyboat",
     "Swifto": "swifto",
     "The Arena": "the-arena",
-    "Citizen": "citizen-health/brief",
+    "Citizen": "citizen-health",
+    "Citizen Health": "citizen-health",
     "CatchCorner by Sports Illustrated": "catchcorner",
     "Diem App": "diem-app",
     "Gride Technology": "gride-technology",
@@ -80,7 +81,7 @@ MANUAL = [
         "opportunity": "Unify training and Medicaid paperwork into one guided path to cut days-to-certification in each new state.",
     },
     {
-        "slug": "citizen-health/brief",
+        "slug": "citizen-health",
         "name": "Citizen Health",
         "about": "Consumer health app for records, visit summaries, and care navigation.",
         "opportunity": "Earn public App Store proof right after in-product wins instead of leading with email signup alone.",
@@ -90,7 +91,7 @@ MANUAL = [
 ABOUT_OVERRIDE = {
     "stake": "Renter cash-back product scaling after UMoveFree integration and new financing.",
     "abby-care": "Home care platform helping families hire Medicaid-paid caregivers across expanding states.",
-    "citizen-health/brief": "Consumer health app for records, visit summaries, and care navigation.",
+    "citizen-health": "Consumer health app for records, visit summaries, and care navigation.",
     "akko": "Device protection sold through partner embeds and checkout, now integrating Upsie.",
     "caramel": "Vehicle marketplace checkout and escrow for private-party sales, including eBay listings.",
     "cloaked": "Identity privacy app moving from consumer aliases into enterprise workspace sales.",

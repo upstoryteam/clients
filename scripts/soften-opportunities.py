@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SKIP = {ROOT / "citizen-health" / "index.html"}  # long-form audit only
+SKIP = {ROOT / "citizen-health" / "legacy-audit" / "index.html"}
 
 GERUND = {
     "lead": "leading",

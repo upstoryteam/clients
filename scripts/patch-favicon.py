@@ -32,7 +32,7 @@ def patch(path: Path) -> bool:
 def main():
     targets = list(ROOT.glob("**/index.html")) + [ROOT / "qa-briefs.html"]
     for path in sorted(targets):
-        if path == ROOT / "citizen-health" / "index.html":
+        if path == ROOT / "citizen-health" / "legacy-audit" / "index.html":
             continue
         if patch(path):
             print("patched", path.relative_to(ROOT))

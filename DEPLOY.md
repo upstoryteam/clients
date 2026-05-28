@@ -6,9 +6,10 @@ Each company brief lives in its **own URL path**, not its own isolated folder on
 
 | Path on site | Files in repo |
 |--------------|----------------|
-| `https://audits.example.com/stake` | `stake/index.html` |
-| `https://audits.example.com/citizen-health` | `citizen-health/index.html` (separate audit format) |
-| `https://audits.example.com/shared/...` | `shared/*` (shared by all growth briefs) |
+| `https://clients.upstory.co/stake` | `stake/index.html` |
+| `https://clients.upstory.co/citizen-health` | `citizen-health/index.html` (growth brief) |
+| `https://clients.upstory.co/citizen-health/legacy-audit` | `citizen-health/legacy-audit/index.html` (archived long-form) |
+| `https://clients.upstory.co/shared/...` | `shared/*` (shared by all growth briefs) |
 
 **One Vercel (or static) project deploys the whole repo root.** Path-based routing serves each `/<slug>/index.html`. There are **no links between briefs**; pages do not reference each other.
 
@@ -32,7 +33,7 @@ Fonts load from Google Fonts via `brief.css` (network required).
 ### Option A — Recommended: deploy the full repo
 
 1. Client connects this GitHub repo to Vercel (or similar).
-2. Point subdomain DNS (e.g. `audits.upstory.co`) at that project.
+2. Point subdomain DNS (e.g. `clients.upstory.co`) at that project.
 3. Keep **`shared/`** and every **`<slug>/`** folder in the same deployment.
 4. Do **not** need `skills/` for production (agent tooling only; optional to omit from deploy or leave in repo).
 

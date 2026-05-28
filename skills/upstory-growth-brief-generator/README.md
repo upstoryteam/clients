@@ -4,7 +4,7 @@ Turn one row of company research into one Upstory growth brief page.
 
 ## What this is
 
-A short strategy memo at `audits.upstory.co/<company-slug>`, linked from a cold email. Goal: a 30-minute call with Rick. This skill writes the page, not the email or deploy.
+A short strategy memo at `clients.upstory.co/<company-slug>`, linked from a cold email. Goal: a 30-minute call with Rick. This skill writes the page, not the email or deploy.
 
 ## Locked format (six blocks)
 

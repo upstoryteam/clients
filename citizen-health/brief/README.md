@@ -1,8 +1,5 @@
-# Citizen Health (growth brief)
+# Citizen Health brief (redirect)
 
-**Format:** Locked six-block growth brief (`FORMAT.md`).  
-**URL:** `audits.upstory.co/citizen-health/brief`
+The growth brief lives at **`/citizen-health`** (`../index.html`).
 
-The long-form audit with interactive mocks lives at [`../`](../) (`/citizen-health/`).
-
-**Sources:** Existing audit themes (signup before value, App Store ratings gap), ICP notes in parent README, public press on Series A and Feb 2026 mobile launch.
+`/citizen-health/brief` redirects there for old links.

@@ -17,7 +17,7 @@ PATCHES: dict[str, tuple[str, str, str]] = {
         "Your new states are sending you applicants who already plan to care at home. The friction we see is training modules and Medicaid paperwork feeling like two different products. One guided queue would speed certification.",
         "",
     ),
-    "citizen-health/brief/index.html": (
+    "citizen-health/index.html": (
         "We believe we can help Citizen Health add 90 five-star App Store ratings.",
         "When someone lands on your homepage, they are already leaning in on the problem. The signup flow still asks for email before the Advocate runs. Closing that gap is the fastest path to more accounts and more public proof.",
         "Projected five-star ratings",

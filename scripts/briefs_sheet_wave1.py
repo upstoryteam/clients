@@ -1,6 +1,6 @@
 """Growth brief content for ICP Leads Wave 1 companies not in outreach JSON."""
 
-# Excluded from generation: Leafwell (cannabis), Citizen (Ciitizen → Citizen Health; see citizen-health/brief)
+# Excluded from generation: Leafwell (cannabis), Citizen (Ciitizen → Citizen Health; see citizen-health/)
 
 BRIEFS_SHEET_WAVE1: list[dict] = [
     {

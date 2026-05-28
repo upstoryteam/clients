@@ -1,6 +1,6 @@
 # Upstory Audits
 
-Static HTML audits Upstory sends to dream-client prospects. Each `<client>/` folder is one **URL** (`audits.example.com/<client>`). Growth briefs share repo-level `shared/` assets; see **`DEPLOY.md`** before handoff.
+Static HTML audits Upstory sends to dream-client prospects. Each `<client>/` folder is one **URL** (`clients.upstory.co/<client>`). Growth briefs share repo-level `shared/` assets; see **`DEPLOY.md`** before handoff.
 
 ## Structure
 
@@ -13,14 +13,13 @@ The `shared/` folder holds cross-audit assets (Upstory logo, Rick photo) served 
 
 ## Deployment
 
-Auto-deploys via Vercel to `audits.upstory.co` once DNS is wired. Path-based routing means each folder becomes a URL:
+Auto-deploys via Vercel to `clients.upstory.co` once DNS is wired. Path-based routing means each folder becomes a URL:
 
-- `audits.upstory.co/citizen-health` (long-form audit)
-- `audits.upstory.co/citizen-health/brief` (growth brief format)
-- `audits.upstory.co/stake`, `audits.upstory.co/abby-care` (growth briefs)
-- `audits.upstory.co/qa-briefs.html` (internal QA index — context + links to all growth briefs)
-- Growth brief previews: see `qa-briefs.html` — **59 companies** (ICP Wave 1 sheet minus Brave and Leafwell, plus Citizen Health at `/citizen-health/brief`). Outreach JSON has **94 contact rows** and **41 unique companies**; sheet-only targets live in `scripts/briefs_sheet_wave1.py`. Run `python3 scripts/check-brief-coverage.py` and `python3 scripts/generate-qa-index.py` after changes.
-- `audits.upstory.co/[next-client]`
+- `clients.upstory.co/citizen-health` (growth brief; legacy long-form at `/citizen-health/legacy-audit`)
+- `clients.upstory.co/stake`, `clients.upstory.co/abby-care` (growth briefs)
+- `clients.upstory.co/qa-briefs.html` (internal QA index — context + links to all growth briefs)
+- Growth brief previews: see `qa-briefs.html` — **59 companies** (ICP Wave 1 sheet minus Brave and Leafwell, Citizen Health at `/citizen-health`). Outreach JSON has **94 contact rows** and **41 unique companies**; sheet-only targets live in `scripts/briefs_sheet_wave1.py`. Run `python3 scripts/check-brief-coverage.py` and `python3 scripts/generate-qa-index.py` after changes.
+- `clients.upstory.co/[next-client]`
 
 `vercel.json` only sets `trailingSlash`. **Client handoff:** read `DEPLOY.md` (full-repo deploy vs per-folder pitfalls).
 
