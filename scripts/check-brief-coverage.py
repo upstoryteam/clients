@@ -53,6 +53,13 @@ CO_TO_SLUG = {
 
 EXTRA_BRIEFS = ["citizen-health/brief"]
 
+# ICP sheet Wave 1 (no JSON contacts yet); Leafwell and Citizen excluded from generation
+SHEET_WAVE1_SLUGS = [
+    "windscribe", "spetz", "super-unlimited", "intrivo", "homma", "lasting",
+    "tenantpay", "marble", "tiicker", "catchcorner", "incogni", "diem-app",
+    "otozen", "quicktutor", "gofree", "gride-technology", "jiffy", "kaly",
+]
+
 
 def main():
     data = json.loads(OUTREACH.read_text(encoding="utf-8"))
@@ -78,7 +85,12 @@ def main():
         for co in missing:
             print(f"  - {co}")
     print(f"Extra briefs (not in JSON): {', '.join(EXTRA_BRIEFS)} ({'ok' if extra_ok else 'MISSING'})")
-    print(f"QA index cards: run generate-qa-index.py")
+    sheet_missing = [s for s in SHEET_WAVE1_SLUGS if not (ROOT / s / "index.html").is_file()]
+    print(f"Sheet wave 1 briefs: {len(SHEET_WAVE1_SLUGS) - len(sheet_missing)}/{len(SHEET_WAVE1_SLUGS)}")
+    if sheet_missing:
+        for s in sheet_missing:
+            print(f"  - missing sheet brief: {s}")
+    print(f"QA index: run generate-qa-index.py (expect 59 cards)")
 
 
 if __name__ == "__main__":

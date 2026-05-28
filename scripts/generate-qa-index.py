@@ -25,6 +25,13 @@ _p2 = importlib.util.module_from_spec(_p2_spec)
 assert _p2_spec.loader is not None
 _p2_spec.loader.exec_module(_p2)
 
+_sheet_spec = importlib.util.spec_from_file_location(
+    "briefs_sheet_wave1", Path(__file__).with_name("briefs_sheet_wave1.py")
+)
+_sheet = importlib.util.module_from_spec(_sheet_spec)
+assert _sheet_spec.loader is not None
+_sheet_spec.loader.exec_module(_sheet)
+
 EXCLUDE_SLUGS = _p2.EXCLUDE_SLUGS
 
 # Slug overrides for outreach `co` names
@@ -47,6 +54,16 @@ CO_SLUG = {
     "Getmyboat": "getmyboat",
     "Swifto": "swifto",
     "The Arena": "the-arena",
+    "Citizen": "citizen-health/brief",
+    "CatchCorner by Sports Illustrated": "catchcorner",
+    "Diem App": "diem-app",
+    "Gride Technology": "gride-technology",
+    "HOMMA Group, Inc": "homma",
+    "Lasting (acquired by Talkspace)": "lasting",
+    "Marble (Acquired by The Zebra)": "marble",
+    "OtoZen: Driving and Family Safety App": "otozen",
+    "Super Unlimited Inc.": "super-unlimited",
+    "TiiCKER": "tiicker",
 }
 
 MANUAL = [
@@ -150,6 +167,8 @@ def entries() -> list[dict]:
     for b in _gen.BRIEFS:
         add_brief(b)
     for b in _p2.BRIEFS_P2_P4:
+        add_brief(b)
+    for b in _sheet.BRIEFS_SHEET_WAVE1:
         add_brief(b)
 
     return sorted(by_slug.values(), key=lambda x: x["name"].lower())

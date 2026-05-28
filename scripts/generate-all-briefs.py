@@ -24,6 +24,13 @@ _p2 = importlib.util.module_from_spec(_p2_spec)
 assert _p2_spec.loader is not None
 _p2_spec.loader.exec_module(_p2)
 
+_sheet_spec = importlib.util.spec_from_file_location(
+    "briefs_sheet_wave1", Path(__file__).with_name("briefs_sheet_wave1.py"),
+)
+_sheet = importlib.util.module_from_spec(_sheet_spec)
+assert _sheet_spec.loader is not None
+_sheet_spec.loader.exec_module(_sheet)
+
 EXCLUDE = _p2.EXCLUDE_SLUGS
 
 
@@ -49,6 +56,7 @@ def ensure_logo(b: dict) -> None:
 def all_briefs() -> list[dict]:
     out = [b for b in _gen.BRIEFS if b["slug"] not in EXCLUDE]
     out.extend(_p2.BRIEFS_P2_P4)
+    out.extend(_sheet.BRIEFS_SHEET_WAVE1)
     return out
 
 
