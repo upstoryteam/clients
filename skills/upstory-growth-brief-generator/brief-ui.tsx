@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from 'react';
 import { ImpactCalculator, type ImpactCalcFormula } from './brief-impact-calc';
+import { FunnelVisual } from './FunnelVisual';
 import { upstoryBriefStyle } from './upstory-tokens';
 
 export const SHARED = '/shared';
@@ -284,25 +285,7 @@ function SolutionVisualPanel({ visual, inline }: { visual: SolutionVisual; inlin
           ) : null}
         </>
       )}
-      {visual.type === 'funnel' && (
-        <div className="flex w-full flex-col gap-3">
-          {visual.rows.map((row, i) => (
-            <div
-              key={i}
-              className="grid w-full grid-cols-[minmax(7rem,28%)_minmax(0,1fr)_2.75rem] items-center gap-3 text-[13px] font-semibold text-[var(--upstory-ink-2)]"
-            >
-              <span className="min-w-0">{row.label}</span>
-              <div className="h-2 min-w-0 w-full overflow-hidden rounded bg-[var(--upstory-surface)]">
-                <div
-                  className={`h-full rounded ${row.key ? 'bg-[var(--upstory-ink)]' : 'bg-[var(--upstory-bronze)]'}`}
-                  style={{ width: `${row.pct}%` }}
-                />
-              </div>
-              <span className="text-right text-xs font-semibold text-[var(--upstory-ink-3)]">{row.pct}%</span>
-            </div>
-          ))}
-        </div>
-      )}
+      {visual.type === 'funnel' && <FunnelVisual rows={visual.rows} />}
       {visual.type === 'chips' && (
         <div className="flex w-full gap-2">
           {visual.cells.map((cell, i) => (

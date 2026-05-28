@@ -328,50 +328,74 @@ body.brief {
   color: var(--ink-3);
 }
 
+/* Funnel — single SVG, smooth tapered sides */
 .vis-funnel {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   width: 100%;
 }
 
-.vis-funnel-row {
+.vis-funnel-layout {
   display: grid;
-  grid-template-columns: minmax(7rem, 28%) minmax(0, 1fr) 2.75rem;
+  grid-template-columns: minmax(5.5rem, 1fr) minmax(130px, 200px) 2.25rem;
+  gap: 10px 16px;
   align-items: center;
-  gap: 12px;
-  width: 100%;
+}
+
+.vis-funnel-aside {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.vis-funnel-meta {
+  display: flex;
+  align-items: center;
+  min-height: var(--funnel-stage-h, 48px);
   font-size: 13px;
   font-weight: 600;
+  line-height: 1.3;
   color: var(--ink-2);
 }
 
-.vis-funnel-row > span:first-child {
-  min-width: 0;
+.vis-funnel-labels .vis-funnel-meta {
+  justify-content: flex-end;
+  text-align: right;
 }
 
-.vis-funnel-bar {
+.vis-funnel-pcts .vis-funnel-meta {
+  justify-content: flex-start;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-3);
+}
+
+.vis-funnel-meta.is-key {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.vis-funnel-svg {
+  display: block;
   width: 100%;
-  min-width: 0;
-  height: 8px;
-  background: var(--surface);
-  border-radius: 4px;
-  overflow: hidden;
+  max-width: 200px;
+  margin: 0 auto;
+  height: auto;
 }
 
 .vis-funnel-fill {
-  height: 100%;
-  background: var(--bronze);
-  border-radius: 4px;
+  fill: #d4bc8e;
+  stroke: none;
 }
 
-.vis-funnel-row.is-key .vis-funnel-fill { background: var(--ink); }
+.vis-funnel-fill.is-key {
+  fill: var(--ink);
+}
 
-.vis-funnel-pct {
-  text-align: right;
-  font-size: 12px;
-  color: var(--ink-3);
-  font-weight: 600;
+.vis-funnel-divider {
+  stroke: rgba(255, 255, 255, 0.28);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
 }
 
 /* Inline metric chips (no box) */

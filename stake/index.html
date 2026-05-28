@@ -66,20 +66,24 @@
         </div>
         <div class="visual">
           <div class="vis-funnel">
-            <div class="vis-funnel-row">
-              <span>UMoveFree signup</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:100%"></div></div>
-              <span class="vis-funnel-pct">100</span>
-            </div>
-            <div class="vis-funnel-row">
-              <span>Onboarding done</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:62%"></div></div>
-              <span class="vis-funnel-pct">62</span>
-            </div>
-            <div class="vis-funnel-row is-key">
-              <span>First rent payment</span>
-              <div class="vis-funnel-bar"><div class="vis-funnel-fill" style="width:38%"></div></div>
-              <span class="vis-funnel-pct">38</span>
+            <div class="vis-funnel-layout" style="--funnel-stage-h: 48px">
+              <div class="vis-funnel-aside vis-funnel-labels">
+                <div class="vis-funnel-meta">UMoveFree signup</div>
+                <div class="vis-funnel-meta">Onboarding done</div>
+                <div class="vis-funnel-meta is-key">First rent payment</div>
+              </div>
+              <svg class="vis-funnel-svg" viewBox="0 0 200 144" role="img" aria-label="Conversion funnel">
+                <path class="vis-funnel-fill" d="M 10 0 L 190 0 Q 168.5 24 155.8 48 L 44.2 48 Q 31.5 24 10 0 Z"/>
+                <path class="vis-funnel-fill" d="M 44.2 48 L 155.8 48 Q 142.3 72 134.2 96 L 65.8 96 Q 57.7 72 44.2 48 Z"/>
+                <path class="vis-funnel-fill is-key" d="M 65.8 96 L 134.2 96 Q 130.9 120 131.5 144 L 68.5 144 Q 69.1 120 65.8 96 Z"/>
+                <line class="vis-funnel-divider" x1="44.2" y1="48" x2="155.8" y2="48"/>
+                <line class="vis-funnel-divider" x1="65.8" y1="96" x2="134.2" y2="96"/>
+              </svg>
+              <div class="vis-funnel-aside vis-funnel-pcts">
+                <div class="vis-funnel-meta">100</div>
+                <div class="vis-funnel-meta">62</div>
+                <div class="vis-funnel-meta is-key">38</div>
+              </div>
             </div>
           </div>
           <p style="margin:14px 0 0;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)">Illustrative. Where we would look first.</p>
