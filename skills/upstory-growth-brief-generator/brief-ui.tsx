@@ -240,11 +240,11 @@ export function BriefSectionIntro({
 }
 
 export function OpportunitiesIntro({
-  lead = 'Three places we would start in the product.',
+  lead = "Three places we'd start in the product.",
 }: {
   lead?: ReactNode;
 }) {
-  return <BriefSectionIntro title="Opportunities" lead={lead} />;
+  return <BriefSectionIntro title="Opportunities to explore" lead={lead} />;
 }
 
 /** @deprecated use OpportunitiesIntro */

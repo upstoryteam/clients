@@ -3,10 +3,20 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import subprocess
 import urllib.request
 from pathlib import Path
+
+_soften_spec = importlib.util.spec_from_file_location(
+    "soften_opportunities",
+    Path(__file__).with_name("soften-opportunities.py"),
+)
+_soften_mod = importlib.util.module_from_spec(_soften_spec)
+assert _soften_spec.loader is not None
+_soften_spec.loader.exec_module(_soften_mod)
+soften_body = _soften_mod.soften_body
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGOS = ROOT / "shared" / "logos"
@@ -59,7 +69,7 @@ def funnel_svg(rows: list[tuple[str, int, bool]]) -> tuple[str, str]:
               <div class="vis-funnel-aside vis-funnel-pcts">{pcts}</div>
             </div>
           </div>
-          <p style="margin:14px 0 0;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)">Illustrative. Where we would look first.</p>"""
+          <p style="margin:14px 0 0;font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)">Illustrative. Where we'd look first.</p>"""
     return block, ""
 
 
@@ -241,7 +251,7 @@ BRIEFS: list[dict] = [
     {
         "slug": "goldin",
         "name": "Goldin",
-        "logo_ext": "svg",
+        "logo_ext": "png",
         "headline": "We believe we can help Goldin lift winning-bid payment completion to 92% on high-value lots.",
         "insight": "eBay scale raises the stakes on checkout trust. Bidders commit large sums after the adrenaline fades. Consignors need the same clarity on payouts before anyone wires funds.",
         "opps": [
@@ -272,6 +282,108 @@ BRIEFS: list[dict] = [
             "Second trip within 60 days of the first completed ride.",
         ],
     },
+    {
+        "slug": "portola",
+        "name": "Portola",
+        "logo_ext": "svg",
+        "headline": "We believe we can help Portola lift week-one return rate for new Tolan users by 20%.",
+        "insight": "Tolan wins on voice and character, and you are investing in the first minutes of that relationship. If the opening conversation and visual presence feel polished before feature depth, retention has room to move.",
+        "opps": [
+            ("01", "Make the first voice exchange feel complete before signup depth", "New users decide whether Tolan is real in the first session. We'd start by giving them a satisfying voice moment, then invite account creation.", "journey", [("App open", False), ("Voice moment", True), ("Account created", False)]),
+            ("02", "Map drop-off from first chat to day-three return", "Voice companions live on habit. We'd start by mapping where first-week users stall after the initial conversation.", "funnel", [("First session", 100, False), ("Day 2 return", 48, False), ("Day 7 active", 29, True)]),
+            ("03", "Keep visual and voice quality consistent across surfaces", "Design hiring signals polish matters in public moments. We'd start by aligning the same trust cues on web, mobile, and character render.", None, None),
+        ],
+        "measures": [
+            "First session ending with a completed voice exchange.",
+            "Day-three return rate among users who finish session one.",
+            "Week-one retention versus users who bounce after first chat.",
+        ],
+    },
+    {
+        "slug": "legit-app",
+        "name": "LegitApp",
+        "logo_ext": "svg",
+        "headline": "We believe we can help LegitApp lift first-submit authentication pass rate to 95%.",
+        "insight": "You are scaling trust with marketplaces and publishing accuracy numbers that set a high bar. Sellers and buyers still hesitate at the moment they hand over an item or a photo. That submit flow is where credibility becomes tangible.",
+        "opps": [
+            ("01", "Show what happens during authentication before the user commits", "Users fear a black box. We'd start by previewing steps, timing, and what pass or fail means for them.", "journey", [("Item photos", False), ("Auth preview", True), ("Result + cert", False)]),
+            ("02", "Tighten the path from upload to certificate issued", "Marketplace deadlines are tight. We'd start by mapping friction between upload, payment, and result.", "funnel", [("Submit started", 100, False), ("Photos accepted", 74, False), ("Certificate issued", 58, True)]),
+            ("03", "Align TikTok Shop and marketplace flows to one trust pattern", "Partners multiply surfaces. We'd start by reusing the same proof components everywhere you authenticate.", None, None),
+        ],
+        "measures": [
+            "First-submit pass rate without reshoot requests.",
+            "Median time from upload complete to certificate issued.",
+            "Partner cohort completion versus direct traffic.",
+        ],
+    },
+    {
+        "slug": "winit",
+        "name": "WinIt",
+        "logo_ext": "svg",
+        "headline": "We believe we can help WinIt lift dispute submission completion to 70%.",
+        "insight": "You are expanding the legal product suite while users still face high-stress moments when they upload evidence or authorize payment. Those screens need to feel guided, not bureaucratic.",
+        "opps": [
+            ("01", "Walk users through evidence before they commit to filing", "Disputes spike anxiety. We'd start by showing what strong evidence looks like, then ask for uploads.", "journey", [("Dispute opened", False), ("Evidence guide", True), ("Submitted", False)]),
+            ("02", "Reduce abandonment on multi-step dispute flows", "New product lines add steps. We'd start by mapping where users exit before submission.", "funnel", [("Flow started", 100, False), ("Evidence complete", 55, False), ("Dispute filed", 38, True)]),
+            ("03", "Separate onboarding for each new product without reinventing trust", "Growth hires signal new surfaces. We'd start by reusing the same reassurance pattern across offerings.", None, None),
+        ],
+        "measures": [
+            "Dispute flows started that reach submission.",
+            "Evidence upload completed on first attempt.",
+            "Support contacts per 100 submitted disputes.",
+        ],
+    },
+    {
+        "slug": "lolli",
+        "name": "Lolli",
+        "logo_ext": "svg",
+        "headline": "We believe we can help Lolli lift card-linked reward activation to 45% of eligible users.",
+        "insight": "The Kard partnership moves rewards into everyday card spend. Users still have to link a card and believe Bitcoin cashback is real before they swipe. That first-link experience is the new wedge.",
+        "opps": [
+            ("01", "Prove the reward before asking for card link", "Card linking is a big ask. We'd start by showing estimated earn on a typical purchase, then request link.", "journey", [("Offer seen", False), ("Reward preview", True), ("Card linked", False)]),
+            ("02", "Map first swipe to first credited reward", "Activation is not link alone. We'd start by tracking link through first merchant reward posted.", "funnel", [("Card linked", 100, False), ("First purchase", 62, False), ("Reward credited", 41, True)]),
+            ("03", "Keep browser and card rewards feeling like one brand", "Two surfaces can confuse. We'd start by aligning status and payout language across both.", None, None),
+        ],
+        "measures": [
+            "Eligible users completing card link.",
+            "First purchase with posted reward within 14 days of link.",
+            "Repeat swipe rate among activated card users.",
+        ],
+    },
+    {
+        "slug": "getmyboat",
+        "name": "Getmyboat",
+        "logo_ext": "svg",
+        "headline": "We believe we can help Getmyboat lift booking completion across integrated inventory by 18%.",
+        "insight": "You are merging two large marketplaces into one discovery experience. Renters still need confidence on price, captain, and cancellation before they commit. The unified booking path is where that trust is won or lost.",
+        "opps": [
+            ("01", "Show total trip clarity before payment", "Boat rentals have hidden complexity. We'd start by surfacing fees, captain, and cancellation in one summary before checkout.", "journey", [("Listing view", False), ("Trip summary", True), ("Booking paid", False)]),
+            ("02", "Map drop-off across the merged checkout", "Integration adds steps. We'd start by instrumenting search through confirmation on blended inventory.", "funnel", [("Checkout started", 100, False), ("Details confirmed", 68, False), ("Booking complete", 44, True)]),
+            ("03", "Give owners and renters the same milestone language", "Two-sided confusion drives support. We'd start by aligning status updates on both apps.", None, None),
+        ],
+        "measures": [
+            "Checkout starts reaching paid booking.",
+            "Time from listing click to confirmed booking.",
+            "Cancellation rate in the first 48 hours after book.",
+        ],
+    },
+    {
+        "slug": "swifto",
+        "name": "Swifto",
+        "logo_ext": "png",
+        "headline": "We believe we can help Swifto lift Meet & Greet to first paid walk conversion to 55%.",
+        "insight": "The North Carolina expansion follows an acquisition, and your model depends on a high-trust first meeting between owner, walker, and dog. The scheduling and Meet & Greet flow is where that trust is built.",
+        "opps": [
+            ("01", "Set expectations before the Meet & Greet is booked", "Owners worry about fit. We'd start by showing walker credentials and visit structure, then open scheduling.", "journey", [("Owner signup", False), ("Walker match preview", True), ("Meet & Greet booked", False)]),
+            ("02", "Map Meet & Greet through first recurring walk", "The handoff from trial visit to paid schedule is the revenue moment. We'd start by mapping that funnel in the new market.", "funnel", [("Meet & Greet done", 100, False), ("First walk scheduled", 61, False), ("Recurring plan active", 38, True)]),
+            ("03", "Localize the NC onboarding without cloning NYC blindly", "Markets differ. We'd start by testing copy and steps tuned to acquired customers in North Carolina.", None, None),
+        ],
+        "measures": [
+            "Meet & Greet bookings per new owner signup.",
+            "First paid walk within 14 days of Meet & Greet.",
+            "Recurring plan adoption in new markets versus NYC baseline.",
+        ],
+    },
 ]
 
 
@@ -292,7 +404,7 @@ def render_opp(num: str, title: str, body: str, artifact: str | None, data) -> s
           <h2 class="solution-title">{title}</h2>
         </div>
         <div class="solution-body">
-          <p>{body}</p>
+          <p>{soften_body(body)}</p>
         </div>
 {visual}
       </article>"""
@@ -314,6 +426,8 @@ def render_page(b: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Upstory for {b['name']}</title>
+  <link rel="icon" href="/shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
   <link rel="stylesheet" href="/shared/brief.css">
 </head>
 <body class="brief">
@@ -337,8 +451,8 @@ def render_page(b: dict) -> str:
     </div>
 
     <div class="opportunities-intro">
-      <h2 class="opportunities-heading">Opportunities</h2>
-      <p class="opportunities-lead">Three places we would start in the product.</p>
+      <h2 class="opportunities-heading">Opportunities to explore</h2>
+      <p class="opportunities-lead">Three places we'd start in the product.</p>
     </div>
 
     <section class="solutions">
@@ -363,23 +477,32 @@ def render_page(b: dict) -> str:
 LOGO_URLS = {
     "akko": "https://cdn.prod.website-files.com/653ebce5eaad971b32d955f3/653ebce5eaad971b32d95895_Group%20(12).svg",
     "cloaked": "https://cdn.prod.website-files.com/63ec0f977f0357126ec38bcd/696691327b6ddbf53f5163a6_Cloaked-icon-logo.svg",
+    "portola": "https://cdn.prod.website-files.com/668499ce7cef6042b2f1a2bc/668499ce7cef6042b2f1a2c6_tolan.svg",
+    "legit-app": "https://www.legitapp.com/logo-app-full.svg",
+    "winit": "https://winitnow.com/assets/images/logos/winit-logo-blue.svg",
+    "lolli": "https://lolli.com/images/logo.svg",
+    "getmyboat": "https://www.getmyboat.com/static-images/gmb-logo-color.svg",
+    "swifto": "https://swifto.com/sites/all/themes/custom/dogwalk/logo.png",
+    "whisker-labs": "https://www.whiskerlabs.com/wp-content/uploads/2023/08/whisker-labs-logo.svg",
+    "goldin": "https://d2tt46f3mh26nl.cloudfront.net/assets/images/logo/GoldinIcon.png",
+    "eternal": "https://www.eternal.com/_astro/eternal_footer_logo.DyKavH3T.svg",
 }
 
 
 def download_logos():
     LOGOS.mkdir(parents=True, exist_ok=True)
     for slug, url in LOGO_URLS.items():
-        dest = LOGOS / f"{slug}.svg"
-        if not dest.exists():
-            urllib.request.urlretrieve(url, dest)
-            print("downloaded", dest)
-
-    # Additional logos via curl in shell for sites that block urllib
+        ext = Path(url.split("?", 1)[0]).suffix.lower() or ".svg"
+        dest = LOGOS / f"{slug}{ext}"
+        urllib.request.urlretrieve(url, dest)
+        print("downloaded", dest)
 
 
-def main():
+def main(only_slugs: set[str] | None = None):
     download_logos()
     for b in BRIEFS:
+        if only_slugs is not None and b["slug"] not in only_slugs:
+            continue
         slug_dir = ROOT / b["slug"]
         slug_dir.mkdir(parents=True, exist_ok=True)
         html = render_page(b)
@@ -403,4 +526,7 @@ Status: draft for internal audit.
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+
+    only = set(sys.argv[1:]) if len(sys.argv) > 1 else None
+    main(only)

@@ -9,7 +9,7 @@ One page. Six blocks in a fixed order. **Do not add sections.** Reference implem
 | 1 | **Co-branded header** | `BriefHeader` | Logo + tone metadata per company |
 | 2 | **Outcome headline** | `OutcomeHeadline` | Yes — metric + quantified claim |
 | 3 | **Insight** | `MainInsight` (`What we see` + lightbulb) | Yes — unique per client |
-| 4 | **Opportunities** | `OpportunitiesIntro` + `SolutionBlock` × 3 | Yes — titles, prose, artifacts |
+| 4 | **Opportunities to explore** | `OpportunitiesIntro` + `SolutionBlock` × 3 | Yes — titles, prose, artifacts |
 | 5 | **Ways to measure success** | `WaysToMeasure` | Yes — three bullets tied to headline metric |
 | 6 | **Pitch** | `UpstoryCloser` + `BriefFooter` | Locked copy (do not paraphrase) |
 
@@ -64,17 +64,17 @@ Warm card under the headline. This is what you would **say to them on a call**, 
 
 ---
 
-## 4. Opportunities
+## 4. Opportunities to explore
 
-**Section break:** `border-top`, H2 **Opportunities**, serif lead (default: *Three places we would start in the product.*).
+**Section break:** `border-top`, H2 **Opportunities to explore**, serif lead (default: *Three places we'd start in the product.*).
 
 Each block:
 
 | Element | Rules |
 |---------|--------|
 | **Index** | `01` `02` `03` beside title — never the word “Solution” |
-| **Title** | Manrope, product-specific |
-| **Body** | Serif, **≤ 2 sentences**, full width of the 700px column (no `ch` caps, no extra left indent) |
+| **Title** | Manrope, product-specific (hypothesis, not a committed roadmap) |
+| **Body** | Serif, **≤ 2 sentences**, exploratory voice: **We'd start by…**, **worth testing…**, not prescriptive **We will** / **You should** |
 | **Artifact** | Optional — see below |
 | **Spacing** | `48px` vertical padding between blocks (after the first) |
 
@@ -104,7 +104,7 @@ Typical page: **1–2 artifacts total**. Never assign `01` journey / `02` funnel
 - [ ] The **highlighted** journey step or funnel stage is the moment your title proposes to fix.
 - [ ] Deleting the visual would remove a **relationship** (order or relative drop) that the prose does not already carry.
 - [ ] You cannot swap this visual to another opportunity without changing labels and meaning.
-- [ ] Funnel bars are **illustrative** unless you have real data; label **Illustrative. Where we would look first.**
+- [ ] Funnel bars are **illustrative** unless you have real data; label **Illustrative. Where we'd look first.**
 
 #### Reference pairings (this repo)
 
@@ -183,7 +183,14 @@ No calendar CTA, no “happy to chat” / “if helpful.”
 
 ## Deployment (repo layout)
 
-Each brief is **`/<slug>/index.html`** in this repo, not a standalone deployable folder. It depends on **`/shared/`** at the site root (`brief.css`, Upstory logo, Rick avatar, `logos/<slug>.*`). Briefs do not link to each other. See repo root **`DEPLOY.md`** for client handoff.
+Each brief is **`/<slug>/index.html`** in this repo, not a standalone deployable folder. It depends on **`/shared/`** at the site root (`brief.css`, `favicon-light.svg` / `favicon-dark.svg` [Upstory bolt, same as upstory.co], Upstory logo, Rick avatar, `logos/<slug>.*`). In `<head>`, after `<title>`:
+
+```html
+<link rel="icon" href="/shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+<link rel="icon" href="/shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+```
+
+Briefs do not link to each other. See repo root **`DEPLOY.md`** for client handoff.
 
 ## Before ship: quality review
 

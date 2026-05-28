@@ -73,7 +73,7 @@ Examples:
 | 1 | **Co-branded header** | `BriefHeader` — Upstory for client logo; see `LOGO-TONE.md` |
 | 2 | **Outcome headline** | `OutcomeHeadline` — Manrope, quantified, “We believe we can help…” |
 | 3 | **Insight** | `MainInsight` — eyebrow `What we see`, lightbulb, **unique per client**, max 3 sentences |
-| 4 | **Opportunities** | `OpportunitiesIntro` + three `SolutionBlock`s — optional **artifacts** per block |
+| 4 | **Opportunities to explore** | `OpportunitiesIntro` + three `SolutionBlock`s — optional **artifacts** per block; exploratory voice |
 | 5 | **Ways to measure success** | `WaysToMeasure` — three bronze-dot bullets, same metric as headline |
 | 6 | **Pitch** | `UpstoryCloser` + `BriefFooter` — **locked** copy |
 

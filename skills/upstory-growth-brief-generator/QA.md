@@ -51,7 +51,7 @@ Scan the full page for these patterns. Rewrite any hit.
 
 - [ ] Names a **product surface, channel, cohort, or moment** (not “the user journey” alone).
 - [ ] Headline number ties to something defensible from the CSV row (or labeled conservative in measure bullet 3).
-- [ ] Opportunities map to **Outreach Insight** and **Hiring Focus**, not generic trust-type boilerplate pasted verbatim.
+- [ ] Opportunities to explore map to **Outreach Insight** and **Hiring Focus**, not generic trust-type boilerplate pasted verbatim.
 
 ## Artifacts
 
