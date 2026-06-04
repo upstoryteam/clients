@@ -1,0 +1,5 @@
+# SleekSpace growth brief
+
+Outreach preview. Live at `/sleekspace` after deploy.
+
+Status: draft for internal audit.

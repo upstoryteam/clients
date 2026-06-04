@@ -1,0 +1,5 @@
+# Verified ID growth brief
+
+Outreach preview. Live at `/verified-id` after deploy.
+
+Status: draft for internal audit.

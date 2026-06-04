@@ -11,7 +11,9 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
-KEY = Path("/Users/stephendiedrich/Desktop/upstory/upstory-494617-fe9165a30344.json")
+from repo_paths import gcp_service_account_path
+
+KEY = gcp_service_account_path()
 SHEET_ID = "1Gs_FA3fvry3q7i79JYhriDpGCEwyLP24Xer67WMXH0o"
 GID = 1698358620
 TAB = "Contacts_Combined"

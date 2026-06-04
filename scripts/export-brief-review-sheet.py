@@ -11,7 +11,9 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 ROOT = Path(__file__).resolve().parents[1]
-KEY = Path("/Users/stephendiedrich/Desktop/upstory/upstory-494617-fe9165a30344.json")
+from repo_paths import gcp_service_account_path
+
+KEY = gcp_service_account_path()
 SHEET_ID = "1HnA1Auy2BTy-IszZbBBOod8YcrBUJUqG6v94JDD2weA"
 TAB_NAME = "Growth Brief Review"
 BASE_URL = "https://clients.upstory.co"
@@ -51,6 +53,8 @@ SLUG_ICP_NAME: dict[str, str] = {
     "super-unlimited": "Super Unlimited Inc.",
     "tiicker": "TiiCKER",
     "citizen-health": "Citizen",
+    "floorplans-by-tripleseat": "Floorplans by Tripleseat",
+    "assort-health": "Assort Health",
 }
 
 HEADER = [
@@ -97,11 +101,64 @@ def load_modules():
     assert spec_sheet.loader is not None
     spec_sheet.loader.exec_module(sheet)
 
+    spec_wave2 = importlib.util.spec_from_file_location(
+        "wave2", ROOT / "scripts" / "briefs_wave2.py"
+    )
+    wave2 = importlib.util.module_from_spec(spec_wave2)
+    assert spec_wave2.loader is not None
+    spec_wave2.loader.exec_module(wave2)
+
+    spec_loader = importlib.util.spec_from_file_location(
+        "wave2_loader", ROOT / "scripts" / "wave2_brief_loader.py"
+    )
+    wave2_loader = importlib.util.module_from_spec(spec_loader)
+    assert spec_loader.loader is not None
+    spec_loader.loader.exec_module(wave2_loader)
+
     headlines: dict[str, str] = dict(EXTRA_HEADLINES)
-    for b in list(p1.BRIEFS) + list(p2.BRIEFS_P2_P4) + list(sheet.BRIEFS_SHEET_WAVE1):
+    for b in (
+        list(p1.BRIEFS)
+        + list(p2.BRIEFS_P2_P4)
+        + list(sheet.BRIEFS_SHEET_WAVE1)
+        + list(wave2_loader.get_wave2_briefs())
+    ):
         headlines[b["slug"]] = b.get("headline", "")
 
     return qa, headlines
+
+
+def load_wave2_outreach_insights() -> dict[str, str]:
+    """Slug → Insight for Outreach from Wave 2 Fit Pass tab."""
+    if not KEY.is_file():
+        return {}
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from wave2_utils import WAVE2_SHEET_ID, WAVE2_TAB, row_dict, slugify
+
+    creds = service_account.Credentials.from_service_account_file(
+        str(KEY), scopes=SCOPES
+    )
+    svc = build("sheets", "v4", credentials=creds, cache_discovery=False)
+    res = (
+        svc.spreadsheets()
+        .values()
+        .get(spreadsheetId=WAVE2_SHEET_ID, range=f"'{WAVE2_TAB}'!A1:ZZ")
+        .execute()
+    )
+    rows = res.get("values", [])
+    if not rows:
+        return {}
+    headers = rows[0]
+    out: dict[str, str] = {}
+    for row in rows[1:]:
+        r = row_dict(headers, row)
+        legal = r.get("Name", "")
+        casual = r.get("CasualizedName", "").strip() or legal
+        domain = r.get("Domain", "")
+        slug = slugify(casual, domain, legal)
+        insight = r.get("Insight for Outreach", "")
+        if slug and insight:
+            out[slug] = insight
+    return out
 
 
 def load_icp_outreach_insights() -> dict[str, str]:
@@ -144,7 +201,10 @@ def outreach_insight_for_slug(
     display_name: str,
     icp_insights: dict[str, str],
     slug_to_co: dict[str, str],
+    wave2_insights: dict[str, str] | None = None,
 ) -> str:
+    if wave2_insights and slug in wave2_insights:
+        return wave2_insights[slug]
     for key in (
         SLUG_ICP_NAME.get(slug),
         slug_to_co.get(slug),
@@ -159,16 +219,42 @@ def build_rows(
     qa,
     headlines: dict[str, str],
     icp_insights: dict[str, str],
+    wave2_insights: dict[str, str] | None = None,
 ) -> list[list[str]]:
     slug_to_co = {v: k for k, v in qa.CO_SLUG.items()}
     items = qa.entries()
+    ship_rows: dict[str, dict] = {}
+    try:
+        ship_mod = importlib.util.spec_from_file_location(
+            "wave2_ship", ROOT / "scripts" / "wave2_ship.py"
+        )
+        ship = importlib.util.module_from_spec(ship_mod)
+        assert ship_mod.loader is not None
+        ship_mod.loader.exec_module(ship)
+        ship_rows = ship.status_by_slug()
+    except Exception:
+        pass
     rows: list[list[str]] = [HEADER]
     for i, e in enumerate(items, start=1):
         slug = e["slug"]
         url = f"{BASE_URL}/{slug}"
         insight = outreach_insight_for_slug(
-            slug, e["name"], icp_insights, slug_to_co
+            slug, e["name"], icp_insights, slug_to_co, wave2_insights
         )
+        triage = ship_rows.get(slug, {})
+        ship_status = triage.get("ship_status", "")
+        if ship_status == "skip":
+            review = "Skip"
+            ok = "No"
+            notes = triage.get("reason", "")
+        elif ship_status == "ship":
+            review = "Ship"
+            ok = "Yes"
+            notes = triage.get("reason", "")
+        else:
+            review = "Ship"
+            ok = "Yes"
+            notes = ""
         rows.append(
             [
                 str(i),
@@ -179,9 +265,9 @@ def build_rows(
                 e["opportunity"],
                 url,
                 slug,
-                "Pending",
-                "",
-                "",
+                review,
+                notes,
+                ok,
             ]
         )
     return rows
@@ -256,7 +342,8 @@ def clear_and_write(svc, gid: int, rows: list[list[str]]) -> None:
 def main() -> int:
     qa, headlines = load_modules()
     icp_insights = load_icp_outreach_insights()
-    rows = build_rows(qa, headlines, icp_insights)
+    wave2_insights = load_wave2_outreach_insights()
+    rows = build_rows(qa, headlines, icp_insights, wave2_insights)
     write_csv(rows)
     missing = sum(1 for r in rows[1:] if not r[3])
     if missing:

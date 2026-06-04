@@ -3,21 +3,42 @@
 .AppleDouble
 .LSOverride
 
-# Vercel
+# Vercel (local link metadata only)
 .vercel
 .vercel/
 
-# Logs and editor cruft
+# Editors and logs
 *.log
 .idea/
 .vscode/
+.cursor/
 *.swp
+*~
 
-# Node (in case any audit ever needs a build step)
+# Node (if any audit ever needs a build step)
 node_modules/
 
-# Secrets, just in case
+# Secrets and credentials (never commit)
 .env
 .env.*
-*.key
+.env.local
 *.pem
+*.key
+credentials/
+.secrets/
+*-service-account*.json
+*fe9165*.json
+upstory-494617-*.json
+
+# Campaign ops: emails, Clay/Apollo exports, personalization working files
+data/
+*_contacts*.csv
+*_personalization*.json
+_all_contacts*.json
+**/wave2-*.json
+
+# One-off downloads (copy into data/ locally if a script needs them)
+Downloads/
+
+# Local-only paths sometimes written into exports
+# (regenerate sheet after moving repo; do not commit data/*.csv)

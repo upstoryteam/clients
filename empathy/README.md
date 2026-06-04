@@ -1,0 +1,5 @@
+# Empathy growth brief
+
+Outreach preview. Live at `/empathy` after deploy.
+
+Status: draft for internal audit.

@@ -31,6 +31,27 @@ _sheet = importlib.util.module_from_spec(_sheet_spec)
 assert _sheet_spec.loader is not None
 _sheet_spec.loader.exec_module(_sheet)
 
+_wave2_spec = importlib.util.spec_from_file_location(
+    "briefs_wave2", Path(__file__).with_name("briefs_wave2.py"),
+)
+_wave2 = importlib.util.module_from_spec(_wave2_spec)
+assert _wave2_spec.loader is not None
+_wave2_spec.loader.exec_module(_wave2)
+
+_w2_utils_spec = importlib.util.spec_from_file_location(
+    "wave2_utils", Path(__file__).with_name("wave2_utils.py"),
+)
+_w2_utils = importlib.util.module_from_spec(_w2_utils_spec)
+assert _w2_utils_spec.loader is not None
+_w2_utils_spec.loader.exec_module(_w2_utils)
+
+_w2_loader_spec = importlib.util.spec_from_file_location(
+    "wave2_brief_loader", Path(__file__).with_name("wave2_brief_loader.py"),
+)
+_w2_loader = importlib.util.module_from_spec(_w2_loader_spec)
+assert _w2_loader_spec.loader is not None
+_w2_loader_spec.loader.exec_module(_w2_loader)
+
 EXCLUDE = _p2.EXCLUDE_SLUGS
 
 
@@ -45,6 +66,12 @@ def wordmark_svg(name: str) -> str:
 
 def ensure_logo(b: dict) -> None:
     ext = b.get("logo_ext", "svg")
+    url = b.get("logo_url", "")
+    if url:
+        downloaded = _w2_utils.download_logo_from_url(b["slug"], url, LOGOS)
+        if downloaded:
+            ext = downloaded
+            b["logo_ext"] = ext
     dest = LOGOS / f"{b['slug']}.{ext}"
     if dest.exists():
         return
@@ -53,10 +80,11 @@ def ensure_logo(b: dict) -> None:
         print("wordmark", dest)
 
 
-def all_briefs() -> list[dict]:
+def all_briefs(*, refresh_wave2_sheet: bool = False) -> list[dict]:
     out = [b for b in _gen.BRIEFS if b["slug"] not in EXCLUDE]
     out.extend(_p2.BRIEFS_P2_P4)
     out.extend(_sheet.BRIEFS_SHEET_WAVE1)
+    out.extend(_w2_loader.get_wave2_briefs(refresh_sheet=refresh_wave2_sheet))
     return out
 
 
@@ -86,17 +114,23 @@ Status: draft for internal audit.
 
 def main():
     only = None
+    refresh_wave2 = False
     import sys
 
-    if len(sys.argv) > 1:
-        only = set(sys.argv[1:])
-    if only:
-        _gen.download_logos(only)
-    for b in all_briefs():
+    args = [a for a in sys.argv[1:] if a != "--refresh-wave2"]
+    if "--refresh-wave2" in sys.argv[1:]:
+        refresh_wave2 = True
+    if args:
+        only = set(args)
+    wave2_slugs = {b["slug"] for b in _wave2.BRIEFS_WAVE2}
+    if only is not None:
+        _gen.download_logos(only - wave2_slugs)
+    briefs = all_briefs(refresh_wave2_sheet=refresh_wave2)
+    for b in briefs:
         if only is not None and b["slug"] not in only:
             continue
         write_brief(b)
-    print("total", len(all_briefs()), "briefs in catalog")
+    print("total", len(briefs), "briefs in catalog")
 
 
 if __name__ == "__main__":

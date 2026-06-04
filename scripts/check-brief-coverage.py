@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTREACH = Path("/Users/stephendiedrich/Desktop/upstory/_all_contacts_for_personalization.json")
+from repo_paths import outreach_contacts_json
+
+OUTREACH = outreach_contacts_json()
 EXCLUDE = {"Brave"}
 
 CO_TO_SLUG = {

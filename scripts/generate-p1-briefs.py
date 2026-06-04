@@ -20,7 +20,9 @@ soften_body = _soften_mod.soften_body
 
 ROOT = Path(__file__).resolve().parents[1]
 LOGOS = ROOT / "shared" / "logos"
-OUTREACH = Path("/Users/stephendiedrich/Desktop/upstory/_all_contacts_for_personalization.json")
+from repo_paths import outreach_contacts_json
+
+OUTREACH = outreach_contacts_json()
 
 VB_W, STAGE_H, PAD_X, CX = 200, 48, 10, 100
 CURVE_INSET = 0.94
@@ -91,12 +93,12 @@ INSIGHT_ICON = """        <svg class="insight-icon" width="26" height="26" viewB
         </svg>"""
 
 CLOSER = """    <section class="closer">
-      <img class="logo" src="/shared/upstory-logo.png" alt="Upstory" />
+      <img class="logo" src="../shared/upstory-logo.png" alt="Upstory" />
       <div class="closer-copy">
         <p><strong>Upstory is a product design firm</strong>. We specialize in growth and retention for consumer products that ask for sensitive information. Our focus is in health, fintech, and identity, with client work featuring LifeMD, Firefox, and Wander.</p>
       </div>
       <div class="sig">
-        <img src="/shared/rick-russie.avif" alt="Rick Russie" />
+        <img src="../shared/rick-russie.avif" alt="Rick Russie" />
         <div>
           <p class="sig-name">Rick Russie</p>
           <p class="sig-title">Founder and Design Lead, Upstory</p>
@@ -412,7 +414,7 @@ def render_opp(num: str, title: str, body: str, artifact: str | None, data) -> s
 
 def render_page(b: dict) -> str:
     ext = b["logo_ext"]
-    logo = f"/shared/logos/{b['slug']}.{ext}"
+    logo = f"../shared/logos/{b['slug']}.{ext}"
     opps_html = "\n".join(
         render_opp(n, t, p, a, d) for n, t, p, a, d in b["opps"]
     )
@@ -426,15 +428,15 @@ def render_page(b: dict) -> str:
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Upstory for {b['name']}</title>
-  <link rel="icon" href="/shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="/shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
-  <link rel="stylesheet" href="/shared/brief.css">
+  <link rel="icon" href="../shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="../shared/brief.css">
 </head>
 <body class="brief">
   <main class="page">
     <header class="brief-header">
       <div class="brief-header-brands">
-        <img class="brief-header-upstory" src="/shared/upstory-logo.png" alt="Upstory" />
+        <img class="brief-header-upstory" src="../shared/upstory-logo.png" alt="Upstory" />
         <span class="brief-header-for">for</span>
         <img class="brief-header-logo" src="{logo}" alt="{b['name']}" />
       </div>
