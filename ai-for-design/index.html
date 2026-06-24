@@ -41,7 +41,7 @@
               >
             </div>
 
-            <p class="workshop-value-line">Transform how you design: build a modern AI-powered workflow that helps you move faster without losing your standards.</p>
+            <p class="workshop-value-line">Watch how AI fits into a modern product design workflow, then build your own. Move faster without losing your standards.</p>
 
             <div class="workshop-cta-block">
               <form
@@ -66,27 +66,38 @@
             </div>
           </div>
 
-          <aside class="workshop-brief-card" aria-label="Workshop details">
-            <dl class="workshop-brief-list">
-              <div class="workshop-brief-row">
-                <dt>Format</dt>
-                <dd>Live workshop</dd>
-              </div>
-              <div class="workshop-brief-row">
-                <dt>Duration</dt>
-                <dd>30 minutes</dd>
-              </div>
-              <div class="workshop-brief-row">
-                <dt>Price</dt>
-                <dd>Free</dd>
-              </div>
-              <div class="workshop-brief-row">
-                <dt>Built for</dt>
-                <dd>Product designers, design leadership, product managers</dd>
-              </div>
-            </dl>
-          </aside>
+          <div class="workshop-hero-media">
+            <div class="workshop-video-frame">
+              <iframe
+                src="https://www.loom.com/embed/092b920b315846b78cbaafc28535e8db"
+                title="AI Product Design 101 preview"
+                frameborder="0"
+                allowfullscreen
+                loading="eager"
+              ></iframe>
+            </div>
+            <p class="workshop-hero-media-caption">A quick look at what we cover.</p>
+          </div>
         </div>
+
+        <dl class="workshop-hero-brief" aria-label="Workshop details">
+          <div class="workshop-hero-brief-item">
+            <dt>Format</dt>
+            <dd>Live workshop</dd>
+          </div>
+          <div class="workshop-hero-brief-item">
+            <dt>Duration</dt>
+            <dd>30 minutes</dd>
+          </div>
+          <div class="workshop-hero-brief-item">
+            <dt>Price</dt>
+            <dd>Free</dd>
+          </div>
+          <div class="workshop-hero-brief-item">
+            <dt>Built for</dt>
+            <dd>Designers, design leads, PMs</dd>
+          </div>
+        </dl>
       </div>
     </section>
 
@@ -114,23 +125,6 @@
             <p>Are you a product designer having trouble keeping up with the latest developments? Not sure if your current workflow is already out of date? Watching your team adopt AI tools without a clear sense of what's worth changing?</p>
             <p>In our work with product teams, we keep seeing the same thing: <strong>most designers are overwhelmed</strong> by the speed of change and aren't sure what should change their workflow and what is just noise.</p>
             <p><strong>We built this workshop to help you make sense of the current product design landscape and help you create more confidence in your workflow.</strong></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="workshop-section workshop-video" aria-labelledby="video-heading">
-      <div class="container">
-        <div class="workshop-body workshop-body-wide">
-          <h2 class="workshop-section-heading" id="video-heading">A quick preview</h2>
-          <div class="workshop-video-frame">
-            <iframe
-              src="https://www.loom.com/embed/092b920b315846b78cbaafc28535e8db"
-              title="AI Product Design 101 preview"
-              frameborder="0"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
           </div>
         </div>
       </div>
@@ -387,7 +381,8 @@
       '.workshop-host-hero',
       '.workshop-value-line',
       '.workshop-cta-block',
-      '.workshop-brief-card'
+      '.workshop-hero-media',
+      '.workshop-hero-brief'
     ];
 
     heroRevealSelectors.forEach((selector, index) => {
