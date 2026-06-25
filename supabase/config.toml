@@ -1,0 +1,13 @@
+# Supabase CLI config for the workshop waitlist migration.
+# Run scripts/setup-workshop-waitlist-supabase.sh to link a project and apply migrations.
+
+project_id = ""
+
+[db]
+major_version = 15
+
+[api]
+enabled = true
+
+[studio]
+enabled = true

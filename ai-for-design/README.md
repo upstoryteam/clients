@@ -10,7 +10,46 @@ Duplicated from the `upstory-workshop` project (https://github.com/stephdiedrich
 - `styles.css` — page styles (self-contained; fonts and a few images load from remote CDNs).
 - `assets/` — local images (`rick-russie.png`, `cursor-logo.png`).
 
+## Waitlist storage
+
+Signups are saved to Supabase via the Vercel serverless route at `/api/waitlist`.
+
+Each signup stores:
+
+| Field | Required |
+|-------|----------|
+| `name` | Yes |
+| `work_email` | Yes |
+| `title` | No |
+| `workshop` | Hidden (defaults to `ai-product-design-101`) |
+
+### Setup
+
+1. **Create the table** — run the migration in your Supabase project:
+   ```bash
+   supabase db push
+   ```
+   Or paste `supabase/migrations/20250625120000_workshop_waitlist.sql` into the Supabase SQL editor.
+
+2. **Add Vercel env vars** (see repo root `.env.example`):
+   - `SUPABASE_URL` — project URL from Supabase → Settings → API
+   - `SUPABASE_SERVICE_ROLE_KEY` — service role key (server-side only; never expose in the browser)
+
+3. **Redeploy** so the `/api/waitlist` function picks up the env vars.
+
+### Viewing signups
+
+In Supabase → Table Editor → `workshop_waitlist`, or:
+
+```sql
+select name, work_email, title, created_at
+from workshop_waitlist
+where workshop = 'ai-product-design-101'
+order by created_at desc;
+```
+
+Duplicate emails for the same workshop return a friendly “already on the list” message instead of an error.
+
 ## Notes
 
 - Asset references use absolute `/ai-for-design/...` paths so they resolve correctly under `vercel.json` `trailingSlash: false` (the URL has no trailing slash).
-- Waitlist forms POST to Formspree. Replace `YOUR_FORM_ID` in `index.html` with the real form ID before sending traffic.
