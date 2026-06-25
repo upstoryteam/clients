@@ -41,7 +41,7 @@ Each signup stores:
 
 After a new signup, `/api/waitlist` sends:
 - a confirmation email to the registrant
-- a notification email to `sales@upstory.co` (or `WAITLIST_NOTIFY_EMAIL`)
+- a notification email to `sales@upstory.co`, `nash@upstory.co`, and `steph@upstory.co` (or `WAITLIST_NOTIFY_EMAIL` plus those two)
 
 1. Create a Resend account and verify your sending domain (e.g. `upstory.co`).
 2. Add Vercel env vars:

@@ -1,5 +1,5 @@
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const WORKSHOP_DATE = 'July 14, 2026';
+const WORKSHOP_DATE = 'July 14, 2026 · 1p CDT';
 const WORKSHOP_TITLE = 'How to become an AI-native product designer';
 
 function normalizeText(value) {
@@ -84,11 +84,18 @@ async function sendConfirmationEmail({ name, workEmail }) {
   });
 }
 
+function getTeamNotifyEmails() {
+  const base = process.env.WAITLIST_NOTIFY_EMAIL || 'sales@upstory.co';
+  const emails = base.split(',').map((email) => email.trim()).filter(Boolean);
+  const alwaysInclude = ['nash@upstory.co', 'steph@upstory.co'];
+  return [...new Set([...emails, ...alwaysInclude])];
+}
+
 async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
   const config = getResendConfig();
   if (!config) return { skipped: true };
 
-  const notifyEmail = process.env.WAITLIST_NOTIFY_EMAIL || 'sales@upstory.co';
+  const notifyEmails = getTeamNotifyEmails();
   const titleLine = title || '—';
 
   const html = `
@@ -115,7 +122,7 @@ async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
   return sendResendEmail({
     apiKey: config.apiKey,
     from: config.from,
-    to: [notifyEmail],
+    to: notifyEmails,
     replyTo: workEmail,
     subject: `New workshop signup: ${name}`,
     html,
@@ -196,7 +203,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       alreadyRegistered: true,
-      message: "You're already registered. We'll send joining details before July 14.",
+      message: "You're already registered. We'll send joining details before July 14 at 1p CDT.",
     });
   }
 
