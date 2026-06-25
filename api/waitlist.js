@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       alreadyRegistered: true,
-      message: "You're already on the list. We'll email when a date is set.",
+      message: "You're already registered. We'll send joining details before July 14.",
     });
   }
 
