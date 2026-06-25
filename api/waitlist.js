@@ -16,6 +16,7 @@ async function sendConfirmationEmail({ name, workEmail }) {
   if (!apiKey) return { skipped: true };
 
   const from = process.env.WAITLIST_FROM_EMAIL || 'Upstory <workshop@upstory.co>';
+  const replyTo = process.env.WAITLIST_REPLY_TO_EMAIL || 'rick@upstory.co';
   const greeting = firstName(name);
 
   const html = `
@@ -24,7 +25,7 @@ async function sendConfirmationEmail({ name, workEmail }) {
       <p style="margin: 0 0 16px;">You're registered for <strong>${WORKSHOP_TITLE}</strong>.</p>
       <p style="margin: 0 0 16px;">The live workshop is on <strong>${WORKSHOP_DATE}</strong>. We'll email joining details before the session.</p>
       <p style="margin: 0 0 24px;">See you there,<br>Rick Russie<br>Upstory</p>
-      <p style="margin: 0; font-size: 13px; color: #8a8f90;">Questions? Reply to this email or write to sales@upstory.co.</p>
+      <p style="margin: 0; font-size: 13px; color: #8a8f90;">Questions? Just reply to this email.</p>
     </div>
   `.trim();
 
@@ -39,7 +40,7 @@ async function sendConfirmationEmail({ name, workEmail }) {
     'Rick Russie',
     'Upstory',
     '',
-    'Questions? Reply to this email or write to sales@upstory.co.',
+    'Questions? Just reply to this email.',
   ].join('\n');
 
   const response = await fetch('https://api.resend.com/emails', {
@@ -51,6 +52,7 @@ async function sendConfirmationEmail({ name, workEmail }) {
     body: JSON.stringify({
       from,
       to: [workEmail],
+      reply_to: replyTo,
       subject: `You're registered — AI workshop on ${WORKSHOP_DATE}`,
       html,
       text,

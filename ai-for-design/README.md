@@ -45,6 +45,7 @@ After a new signup, `/api/waitlist` sends a confirmation email via [Resend](http
 2. Add Vercel env vars:
    - `RESEND_API_KEY` — from Resend → API Keys
    - `WAITLIST_FROM_EMAIL` — optional, e.g. `Upstory <workshop@upstory.co>` (must use a verified domain)
+   - `WAITLIST_REPLY_TO_EMAIL` — optional, defaults to `rick@upstory.co`
 3. Redeploy.
 
 If `RESEND_API_KEY` is not set, signups still save — email is skipped.
