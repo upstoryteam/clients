@@ -1,5 +1,16 @@
 # Supabase — workshop waitlist
 
+## Quick setup
+
+```bash
+export SUPABASE_ACCESS_TOKEN="sbp_..."   # https://supabase.com/dashboard/account/tokens
+# optional if you already have a project:
+# export SUPABASE_PROJECT_REF="your-project-ref"
+./scripts/setup-workshop-waitlist-supabase.sh
+```
+
+The script creates or reuses an `upstory-clients` project, applies the migration, and prints the Vercel env vars to add.
+
 ## Migration
 
 Apply `migrations/20250625120000_workshop_waitlist.sql` to create the `workshop_waitlist` table.
