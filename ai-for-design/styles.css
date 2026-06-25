@@ -1112,7 +1112,29 @@ button:focus-visible {
 }
 
 .workshop-page .workshop-header .nav {
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
+  margin-left: auto;
+}
+
+.nav-cta-btn {
+  flex-shrink: 0;
+  padding: 11px 22px;
+  font-size: 0.82rem;
+}
+
+.nav-cta-note {
+  margin: 0;
+  max-width: 9rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-2);
 }
 
 .workshop-section-title {
@@ -1728,6 +1750,15 @@ button:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .nav-cta-note {
+    display: none;
+  }
+
+  .nav-cta-btn {
+    padding: 10px 16px;
+    font-size: 0.78rem;
+  }
+
   .workshop-audience-grid {
     grid-template-columns: 1fr;
   }
