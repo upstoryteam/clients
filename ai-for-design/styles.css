@@ -1117,8 +1117,9 @@ button:focus-visible {
 
 .nav-cta {
   display: flex;
+  flex-flow: row nowrap;
   align-items: center;
-  gap: clamp(12px, 2vw, 16px);
+  gap: clamp(10px, 1.5vw, 14px);
   margin-left: auto;
 }
 
@@ -1130,10 +1131,11 @@ button:focus-visible {
 
 .nav-cta-note {
   margin: 0;
-  max-width: 9rem;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-size: 0.78rem;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1;
   color: var(--ink-2);
 }
 
