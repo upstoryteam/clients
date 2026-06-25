@@ -1469,6 +1469,7 @@ button:focus-visible {
 
 .workshop-cta-band-final {
   padding-bottom: clamp(48px, 6vw, 72px);
+  scroll-margin-top: 88px;
 }
 
 .workshop-cta-band .workshop-form-status {
