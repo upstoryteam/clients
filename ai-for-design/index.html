@@ -323,7 +323,7 @@
       </div>
     </section>
 
-    <section class="workshop-section workshop-cta-band workshop-cta-band-final" aria-label="Register for the workshop">
+    <section class="workshop-section workshop-cta-band workshop-cta-band-final" id="register" aria-label="Register for the workshop">
       <div class="container">
         <div class="workshop-cta-band-inner">
           <p class="workshop-cta-band-lede">Reserve your spot for July 14.</p>
@@ -382,6 +382,28 @@
     window.addEventListener('scroll', () => {
       header.classList.toggle('is-scrolled', window.scrollY > 8);
     }, { passive: true });
+
+    const registerSection = document.getElementById('register');
+    const registerFirstInput = document.getElementById('waitlist-name-bottom');
+
+    function scrollToRegisterAndFocus() {
+      if (!registerSection || !registerFirstInput) return;
+
+      registerSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      window.setTimeout(() => {
+        registerFirstInput.focus({ preventScroll: true });
+      }, 450);
+    }
+
+    document.querySelector('.nav-cta-btn')?.addEventListener('click', (event) => {
+      event.preventDefault();
+      scrollToRegisterAndFocus();
+    });
+
+    if (window.location.hash === '#register') {
+      window.setTimeout(scrollToRegisterAndFocus, 0);
+    }
 
     const successMessage = "You're registered. We'll send joining details before July 14.";
 
