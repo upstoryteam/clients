@@ -156,51 +156,6 @@
       </div>
     </section>
 
-    <section class="workshop-section workshop-cta-band" aria-label="Register for the workshop">
-      <div class="container">
-        <div class="workshop-cta-band-inner">
-          <p class="workshop-cta-band-lede">Free workshop · July 14, 2026</p>
-          <form
-            class="workshop-waitlist workshop-waitlist-centered"
-            id="waitlist-mid"
-            action="/api/waitlist"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="workshop" value="ai-product-design-101">
-            <label class="visually-hidden" for="waitlist-name-mid">Name</label>
-            <input
-              id="waitlist-name-mid"
-              type="text"
-              name="name"
-              required
-              autocomplete="name"
-              placeholder="Full name"
-            >
-            <label class="visually-hidden" for="waitlist-email-mid">Work email</label>
-            <input
-              id="waitlist-email-mid"
-              type="email"
-              name="work_email"
-              required
-              autocomplete="email"
-              placeholder="Work email"
-            >
-            <label class="visually-hidden" for="waitlist-title-mid">Title (optional)</label>
-            <input
-              id="waitlist-title-mid"
-              type="text"
-              name="title"
-              autocomplete="organization-title"
-              placeholder="Title (optional)"
-            >
-            <button type="submit" class="btn btn-primary">Save your spot</button>
-          </form>
-          <p class="workshop-form-status" id="waitlist-status-mid" aria-live="polite" hidden></p>
-        </div>
-      </div>
-    </section>
-
     <section class="workshop-section workshop-tools" aria-labelledby="tools-heading">
       <div class="container">
         <div class="workshop-body workshop-body-wide">
@@ -425,10 +380,6 @@
     }
 
     handleWaitlistSubmit(
-      document.getElementById('waitlist-mid'),
-      document.getElementById('waitlist-status-mid')
-    );
-    handleWaitlistSubmit(
       document.getElementById('waitlist-bottom'),
       document.getElementById('waitlist-status-bottom')
     );
@@ -459,7 +410,6 @@
     const revealGroups = [
       { selector: '.workshop-context .workshop-context-heading, .workshop-context .workshop-context-body p, .workshop-context .workshop-host-context', stagger: 70 },
       { selector: '.workshop-outcomes .workshop-section-heading, .workshop-curriculum-intro, .workshop-outcomes .workshop-list-item', stagger: 60 },
-      { selector: '.workshop-cta-band:not(.workshop-cta-band-final) .workshop-cta-band-inner', stagger: 0 },
       { selector: '.workshop-tools .workshop-section-heading, .workshop-tool-logos li, .workshop-tools-more', stagger: 60 },
       { selector: '.workshop-audience .workshop-section-heading, .workshop-audience-card', stagger: 60 },
       { selector: '.workshop-register-panel > *', stagger: 80 }

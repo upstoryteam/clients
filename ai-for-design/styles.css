@@ -1490,9 +1490,9 @@ button:focus-visible {
   text-align: center;
 }
 
-/* Final registration block */
+/* Final registration block — after .workshop-section so dark bg wins */
 
-.workshop-register {
+.workshop-section.workshop-register {
   padding: clamp(72px, 10vw, 112px) 0 clamp(80px, 12vw, 128px);
   background: var(--ink);
   border-top: none;
@@ -1836,7 +1836,7 @@ button:focus-visible {
 
 @media (max-width: 768px) {
   .nav-cta-note {
-    display: none;
+    font-size: 0.72rem;
   }
 
   .nav-cta-btn {
