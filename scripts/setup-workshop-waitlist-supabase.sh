@@ -64,15 +64,20 @@ fi
 echo "Linking project $PROJECT_REF..."
 npx supabase link --project-ref "$PROJECT_REF" --yes
 
+# Persist project ref for future db push runs.
+if grep -q '^project_id = ""' supabase/config.toml; then
+  sed -i "s/^project_id = \"\"/project_id = \"$PROJECT_REF\"/" supabase/config.toml
+fi
+
 echo "Applying waitlist migration..."
 npx supabase db push --linked --yes
 
 echo "Fetching API keys..."
-KEYS_JSON="$(npx supabase projects api-keys --project-ref "$PROJECT_REF" --output json)"
+KEYS_JSON="$(npx supabase projects api-keys --project-ref "$PROJECT_REF" --reveal --output json)"
 SUPABASE_URL="https://${PROJECT_REF}.supabase.co"
 SERVICE_ROLE_KEY="$(node -e "
   const rows = JSON.parse(process.argv[1]);
-  const row = rows.find((k) => k.name === 'service_role');
+  const row = rows.find((k) => k.type === 'secret') || rows.find((k) => k.name === 'service_role');
   if (!row) process.exit(1);
   process.stdout.write(row.api_key);
 " "$KEYS_JSON")"
