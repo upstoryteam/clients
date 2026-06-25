@@ -1,8 +1,68 @@
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WORKSHOP_DATE = 'July 14, 2026';
+const WORKSHOP_TITLE = 'How to become an AI-native product designer';
 
 function normalizeText(value) {
   if (typeof value !== 'string') return '';
   return value.trim();
+}
+
+function firstName(name) {
+  return name.split(/\s+/)[0] || name;
+}
+
+async function sendConfirmationEmail({ name, workEmail }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return { skipped: true };
+
+  const from = process.env.WAITLIST_FROM_EMAIL || 'Upstory <workshop@upstory.co>';
+  const greeting = firstName(name);
+
+  const html = `
+    <div style="font-family: Manrope, Arial, sans-serif; color: #151d1f; line-height: 1.6; max-width: 520px;">
+      <p style="margin: 0 0 16px;">Hi ${greeting},</p>
+      <p style="margin: 0 0 16px;">You're registered for <strong>${WORKSHOP_TITLE}</strong>.</p>
+      <p style="margin: 0 0 16px;">The live workshop is on <strong>${WORKSHOP_DATE}</strong>. We'll email joining details before the session.</p>
+      <p style="margin: 0 0 24px;">See you there,<br>Rick Russie<br>Upstory</p>
+      <p style="margin: 0; font-size: 13px; color: #8a8f90;">Questions? Reply to this email or write to sales@upstory.co.</p>
+    </div>
+  `.trim();
+
+  const text = [
+    `Hi ${greeting},`,
+    '',
+    `You're registered for ${WORKSHOP_TITLE}.`,
+    '',
+    `The live workshop is on ${WORKSHOP_DATE}. We'll email joining details before the session.`,
+    '',
+    'See you there,',
+    'Rick Russie',
+    'Upstory',
+    '',
+    'Questions? Reply to this email or write to sales@upstory.co.',
+  ].join('\n');
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to: [workEmail],
+      subject: `You're registered — AI workshop on ${WORKSHOP_DATE}`,
+      html,
+      text,
+    }),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Resend ${response.status}: ${body}`);
+  }
+
+  return { sent: true };
 }
 
 export default async function handler(req, res) {
@@ -55,6 +115,12 @@ export default async function handler(req, res) {
   });
 
   if (insertResponse.ok) {
+    try {
+      await sendConfirmationEmail({ name, workEmail });
+    } catch (error) {
+      console.error('Confirmation email failed:', error.message);
+    }
+
     return res.status(201).json({ ok: true });
   }
 

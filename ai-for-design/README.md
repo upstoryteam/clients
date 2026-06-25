@@ -37,6 +37,18 @@ Each signup stores:
 
 3. **Redeploy** so the `/api/waitlist` function picks up the env vars.
 
+### Confirmation emails (optional)
+
+After a new signup, `/api/waitlist` sends a confirmation email via [Resend](https://resend.com).
+
+1. Create a Resend account and verify your sending domain (e.g. `upstory.co`).
+2. Add Vercel env vars:
+   - `RESEND_API_KEY` — from Resend → API Keys
+   - `WAITLIST_FROM_EMAIL` — optional, e.g. `Upstory <workshop@upstory.co>` (must use a verified domain)
+3. Redeploy.
+
+If `RESEND_API_KEY` is not set, signups still save — email is skipped.
+
 ### Viewing signups
 
 In Supabase → Table Editor → `workshop_waitlist`, or:
