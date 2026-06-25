@@ -279,56 +279,52 @@
       </div>
     </section>
 
-    <section class="workshop-section workshop-not-covered" aria-labelledby="not-covered-heading">
+    <section class="workshop-section workshop-register" id="register" aria-labelledby="register-heading">
       <div class="container">
-        <div class="workshop-body">
-          <h2 class="workshop-section-heading" id="not-covered-heading">What is not covered</h2>
-          <p class="workshop-prose">This workshop is for software product design, not hardware. We won't do a deep-dive review of any single tool.</p>
-        </div>
-      </div>
-    </section>
+        <div class="workshop-register-panel">
+          <p class="workshop-register-eyebrow">July 14 · Limited seats · Free</p>
+          <h2 class="workshop-register-headline" id="register-heading">Reserve your spot</h2>
+          <p class="workshop-register-deck">Join the live workshop and get practical AI workflow guidance you can use with your team right away.</p>
 
-    <section class="workshop-section workshop-cta-band workshop-cta-band-final" id="register" aria-label="Register for the workshop">
-      <div class="container">
-        <div class="workshop-cta-band-inner">
-          <p class="workshop-cta-band-lede">Reserve your spot for July 14.</p>
-          <form
-            class="workshop-waitlist workshop-waitlist-centered"
-            id="waitlist-bottom"
-            action="/api/waitlist"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="workshop" value="ai-product-design-101">
-            <label class="visually-hidden" for="waitlist-name-bottom">Name</label>
-            <input
-              id="waitlist-name-bottom"
-              type="text"
-              name="name"
-              required
-              autocomplete="name"
-              placeholder="Full name"
+          <div class="workshop-register-form-wrap">
+            <form
+              class="workshop-waitlist workshop-waitlist-register"
+              id="waitlist-bottom"
+              action="/api/waitlist"
+              method="POST"
+              novalidate
             >
-            <label class="visually-hidden" for="waitlist-email-bottom">Work email</label>
-            <input
-              id="waitlist-email-bottom"
-              type="email"
-              name="work_email"
-              required
-              autocomplete="email"
-              placeholder="Work email"
-            >
-            <label class="visually-hidden" for="waitlist-title-bottom">Title (optional)</label>
-            <input
-              id="waitlist-title-bottom"
-              type="text"
-              name="title"
-              autocomplete="organization-title"
-              placeholder="Title (optional)"
-            >
-            <button type="submit" class="btn btn-primary">Save your spot</button>
-          </form>
-          <p class="workshop-form-status" id="waitlist-status-bottom" aria-live="polite" hidden></p>
+              <input type="hidden" name="workshop" value="ai-product-design-101">
+              <label class="visually-hidden" for="waitlist-name-bottom">Name</label>
+              <input
+                id="waitlist-name-bottom"
+                type="text"
+                name="name"
+                required
+                autocomplete="name"
+                placeholder="Full name"
+              >
+              <label class="visually-hidden" for="waitlist-email-bottom">Work email</label>
+              <input
+                id="waitlist-email-bottom"
+                type="email"
+                name="work_email"
+                required
+                autocomplete="email"
+                placeholder="Work email"
+              >
+              <label class="visually-hidden" for="waitlist-title-bottom">Title (optional)</label>
+              <input
+                id="waitlist-title-bottom"
+                type="text"
+                name="title"
+                autocomplete="organization-title"
+                placeholder="Title (optional)"
+              >
+              <button type="submit" class="btn btn-primary btn-register">Save your spot</button>
+            </form>
+            <p class="workshop-form-status" id="waitlist-status-bottom" aria-live="polite" hidden></p>
+          </div>
         </div>
       </div>
     </section>
@@ -466,8 +462,7 @@
       { selector: '.workshop-cta-band:not(.workshop-cta-band-final) .workshop-cta-band-inner', stagger: 0 },
       { selector: '.workshop-tools .workshop-section-heading, .workshop-tool-logos li, .workshop-tools-more', stagger: 60 },
       { selector: '.workshop-audience .workshop-section-heading, .workshop-audience-card', stagger: 60 },
-      { selector: '.workshop-not-covered .workshop-section-heading, .workshop-not-covered .workshop-prose', stagger: 70 },
-      { selector: '.workshop-cta-band-final .workshop-cta-band-inner', stagger: 0 }
+      { selector: '.workshop-register-panel > *', stagger: 80 }
     ];
 
     revealGroups.forEach(({ selector, stagger }) => {
