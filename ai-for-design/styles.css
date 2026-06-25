@@ -1314,7 +1314,23 @@ button:focus-visible {
 }
 
 .workshop-cta-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(12px, 2vw, 16px);
   padding-top: 8px;
+}
+
+.workshop-hero-cta-note {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+
+.workshop-cta-block .register-scroll-btn {
+  flex-shrink: 0;
 }
 
 .workshop-cta-label {

@@ -15,7 +15,7 @@
           <img src="https://framerusercontent.com/images/oDaFC8FaO5YkYeHL4dVplXzEs.svg?width=1024&height=320" alt="Upstory" width="1024" height="320">
         </a>
         <div class="nav-cta">
-          <a class="btn btn-primary nav-cta-btn" href="#register">Save your spot</a>
+          <a class="btn btn-primary nav-cta-btn register-scroll-btn" href="#register">Save your spot</a>
           <p class="nav-cta-note">July 14 · Limited seats</p>
         </div>
       </nav>
@@ -48,43 +48,8 @@
             <p class="workshop-value-line">See how AI fits into a modern product design workflow, then build one your team can actually run. Move faster without losing your standards.</p>
 
             <div class="workshop-cta-block">
-              <form
-                class="workshop-waitlist"
-                id="waitlist-hero"
-                action="/api/waitlist"
-                method="POST"
-                novalidate
-              >
-                <input type="hidden" name="workshop" value="ai-product-design-101">
-                <label class="visually-hidden" for="waitlist-name-hero">Name</label>
-                <input
-                  id="waitlist-name-hero"
-                  type="text"
-                  name="name"
-                  required
-                  autocomplete="name"
-                  placeholder="Full name"
-                >
-                <label class="visually-hidden" for="waitlist-email-hero">Work email</label>
-                <input
-                  id="waitlist-email-hero"
-                  type="email"
-                  name="work_email"
-                  required
-                  autocomplete="email"
-                  placeholder="Work email"
-                >
-                <label class="visually-hidden" for="waitlist-title-hero">Title (optional)</label>
-                <input
-                  id="waitlist-title-hero"
-                  type="text"
-                  name="title"
-                  autocomplete="organization-title"
-                  placeholder="Title (optional)"
-                >
-                <button type="submit" class="btn btn-primary">Save your spot</button>
-              </form>
-              <p class="workshop-form-status" id="waitlist-status-hero" aria-live="polite" hidden></p>
+              <a class="btn btn-primary register-scroll-btn" href="#register">Save your spot</a>
+              <p class="workshop-hero-cta-note">July 14 · Limited seats</p>
             </div>
           </div>
 
@@ -396,9 +361,11 @@
       }, 450);
     }
 
-    document.querySelector('.nav-cta-btn')?.addEventListener('click', (event) => {
-      event.preventDefault();
-      scrollToRegisterAndFocus();
+    document.querySelectorAll('.register-scroll-btn').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        scrollToRegisterAndFocus();
+      });
     });
 
     if (window.location.hash === '#register') {
@@ -461,10 +428,6 @@
       });
     }
 
-    handleWaitlistSubmit(
-      document.getElementById('waitlist-hero'),
-      document.getElementById('waitlist-status-hero')
-    );
     handleWaitlistSubmit(
       document.getElementById('waitlist-mid'),
       document.getElementById('waitlist-status-mid')
