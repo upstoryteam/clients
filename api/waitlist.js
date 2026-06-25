@@ -11,11 +11,41 @@ function firstName(name) {
   return name.split(/\s+/)[0] || name;
 }
 
-async function sendConfirmationEmail({ name, workEmail }) {
+function getResendConfig() {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return { skipped: true };
+  if (!apiKey) return null;
 
-  const from = process.env.WAITLIST_FROM_EMAIL || 'Upstory <workshop@upstory.co>';
+  return {
+    apiKey,
+    from: process.env.WAITLIST_FROM_EMAIL || 'Upstory <workshop@upstory.co>',
+  };
+}
+
+async function sendResendEmail({ apiKey, from, to, replyTo, subject, html, text }) {
+  const payload = { from, to, subject, html, text };
+  if (replyTo) payload.reply_to = replyTo;
+
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Resend ${response.status}: ${body}`);
+  }
+
+  return { sent: true };
+}
+
+async function sendConfirmationEmail({ name, workEmail }) {
+  const config = getResendConfig();
+  if (!config) return { skipped: true };
+
   const replyTo = process.env.WAITLIST_REPLY_TO_EMAIL || 'rick@upstory.co';
   const greeting = firstName(name);
 
@@ -43,28 +73,68 @@ async function sendConfirmationEmail({ name, workEmail }) {
     'Questions? Just reply to this email.',
   ].join('\n');
 
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      from,
-      to: [workEmail],
-      reply_to: replyTo,
-      subject: `You're registered — AI workshop on ${WORKSHOP_DATE}`,
-      html,
-      text,
-    }),
+  return sendResendEmail({
+    apiKey: config.apiKey,
+    from: config.from,
+    to: [workEmail],
+    replyTo,
+    subject: `You're registered — AI workshop on ${WORKSHOP_DATE}`,
+    html,
+    text,
   });
+}
 
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(`Resend ${response.status}: ${body}`);
-  }
+async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
+  const config = getResendConfig();
+  if (!config) return { skipped: true };
 
-  return { sent: true };
+  const notifyEmail = process.env.WAITLIST_NOTIFY_EMAIL || 'sales@upstory.co';
+  const titleLine = title || '—';
+
+  const html = `
+    <div style="font-family: Manrope, Arial, sans-serif; color: #151d1f; line-height: 1.6; max-width: 520px;">
+      <p style="margin: 0 0 16px;">New workshop signup for <strong>${WORKSHOP_TITLE}</strong>.</p>
+      <ul style="margin: 0; padding-left: 20px;">
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Email:</strong> ${workEmail}</li>
+        <li><strong>Title:</strong> ${titleLine}</li>
+        <li><strong>Workshop:</strong> ${workshop}</li>
+      </ul>
+    </div>
+  `.trim();
+
+  const text = [
+    `New workshop signup for ${WORKSHOP_TITLE}.`,
+    '',
+    `Name: ${name}`,
+    `Email: ${workEmail}`,
+    `Title: ${titleLine}`,
+    `Workshop: ${workshop}`,
+  ].join('\n');
+
+  return sendResendEmail({
+    apiKey: config.apiKey,
+    from: config.from,
+    to: [notifyEmail],
+    replyTo: workEmail,
+    subject: `New workshop signup: ${name}`,
+    html,
+    text,
+  });
+}
+
+async function handleSignupEmails(signup) {
+  const results = await Promise.allSettled([
+    sendConfirmationEmail(signup),
+    sendTeamNotificationEmail(signup),
+  ]);
+
+  results.forEach((result, index) => {
+    if (result.status === 'rejected') {
+      const label = index === 0 ? 'Confirmation email' : 'Team notification';
+      console.error(`${label} failed:`, result.reason.message);
+    }
+  });
 }
 
 export default async function handler(req, res) {
@@ -117,11 +187,7 @@ export default async function handler(req, res) {
   });
 
   if (insertResponse.ok) {
-    try {
-      await sendConfirmationEmail({ name, workEmail });
-    } catch (error) {
-      console.error('Confirmation email failed:', error.message);
-    }
+    await handleSignupEmails({ name, workEmail, title, workshop });
 
     return res.status(201).json({ ok: true });
   }
