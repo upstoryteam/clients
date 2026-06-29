@@ -91,7 +91,7 @@ async function sendConfirmationEmail({ name, workEmail }) {
 function getTeamNotifyEmails() {
   const base = process.env.WAITLIST_NOTIFY_EMAIL || 'sales@upstory.co';
   const emails = base.split(',').map((email) => email.trim()).filter(Boolean);
-  const alwaysInclude = ['nash@upstory.co', 'steph@upstory.co'];
+  const alwaysInclude = ['nash@upstory.co', 'sd@upstory.co'];
   return [...new Set([...emails, ...alwaysInclude])];
 }
 
