@@ -390,6 +390,13 @@
           statusEl.textContent = result.message || successMessage;
           statusEl.hidden = false;
           submitBtn.textContent = 'Joined';
+
+          if (typeof fbq === 'function') {
+            fbq('track', 'CompleteRegistration', {
+              content_name: 'ai-product-design-101',
+              status: true,
+            });
+          }
         } catch (error) {
           statusEl.textContent = error.message === 'Submit failed'
             ? 'Something went wrong. Try again or email sales@upstory.co.'
