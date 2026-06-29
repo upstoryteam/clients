@@ -348,13 +348,21 @@
 
     const successMessage = "You're registered. We'll send joining details before July 14 at 1p CDT.";
 
-    function formPayload(form) {
+    function generateEventId() {
+      if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+      }
+      return `evt-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function formPayload(form, eventId) {
       const data = new FormData(form);
       return {
         name: (data.get('name') || '').toString().trim(),
         work_email: (data.get('work_email') || '').toString().trim(),
         title: (data.get('title') || '').toString().trim(),
         workshop: (data.get('workshop') || 'ai-product-design-101').toString().trim(),
+        event_id: eventId,
       };
     }
 
@@ -370,6 +378,8 @@
         statusEl.textContent = '';
         statusEl.classList.remove('workshop-form-status--error');
 
+        const eventId = generateEventId();
+
         try {
           const response = await fetch(form.action, {
             method: 'POST',
@@ -377,7 +387,7 @@
               Accept: 'application/json',
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formPayload(form)),
+            body: JSON.stringify(formPayload(form, eventId)),
           });
 
           const result = await response.json().catch(() => ({}));
@@ -395,7 +405,7 @@
             fbq('track', 'CompleteRegistration', {
               content_name: 'ai-product-design-101',
               status: true,
-            });
+            }, { eventID: eventId });
           }
         } catch (error) {
           statusEl.textContent = error.message === 'Submit failed'

@@ -1,6 +1,10 @@
+import { createHash } from 'node:crypto';
+
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const WORKSHOP_DATE = 'July 14, 2026 · 1p CDT';
 const WORKSHOP_TITLE = 'How to become an AI-native product designer';
+const META_PIXEL_ID = process.env.META_PIXEL_ID || '1099381639935282';
+const META_GRAPH_VERSION = process.env.META_GRAPH_VERSION || 'v19.0';
 
 function normalizeText(value) {
   if (typeof value !== 'string') return '';
@@ -144,6 +148,96 @@ async function handleSignupEmails(signup) {
   });
 }
 
+function sha256(value) {
+  return createHash('sha256').update(value).digest('hex');
+}
+
+function getClientIp(req) {
+  const forwarded = req.headers['x-forwarded-for'];
+  if (typeof forwarded === 'string' && forwarded.length) {
+    return forwarded.split(',')[0].trim();
+  }
+  return req.socket?.remoteAddress || undefined;
+}
+
+function parseCookies(req) {
+  const header = req.headers.cookie;
+  const cookies = {};
+  if (typeof header !== 'string') return cookies;
+
+  header.split(';').forEach((part) => {
+    const index = part.indexOf('=');
+    if (index === -1) return;
+    const key = part.slice(0, index).trim();
+    if (!key) return;
+    cookies[key] = decodeURIComponent(part.slice(index + 1).trim());
+  });
+
+  return cookies;
+}
+
+// Server-side Conversions API event. Mirrors the browser pixel's
+// CompleteRegistration so registrations are still counted when the browser
+// pixel is blocked by ad blockers / tracking protection. Shares the event_id
+// with the browser event so Meta can deduplicate when both arrive.
+async function sendMetaConversion({ req, name, workEmail, eventId }) {
+  const accessToken = process.env.META_CAPI_ACCESS_TOKEN;
+  if (!accessToken) return { skipped: true };
+
+  const cookies = parseCookies(req);
+  const userData = {
+    em: [sha256(workEmail)],
+  };
+
+  const givenName = firstName(name).toLowerCase();
+  if (givenName) userData.fn = [sha256(givenName)];
+
+  const clientIp = getClientIp(req);
+  if (clientIp) userData.client_ip_address = clientIp;
+
+  const userAgent = req.headers['user-agent'];
+  if (userAgent) userData.client_user_agent = userAgent;
+
+  if (cookies._fbp) userData.fbp = cookies._fbp;
+  if (cookies._fbc) userData.fbc = cookies._fbc;
+
+  const event = {
+    event_name: 'CompleteRegistration',
+    event_time: Math.floor(Date.now() / 1000),
+    action_source: 'website',
+    user_data: userData,
+    custom_data: {
+      content_name: 'ai-product-design-101',
+      status: true,
+    },
+  };
+
+  if (eventId) event.event_id = eventId;
+  const eventSourceUrl = req.headers.referer || req.headers.origin;
+  if (eventSourceUrl) event.event_source_url = eventSourceUrl;
+
+  const body = { data: [event] };
+  if (process.env.META_TEST_EVENT_CODE) {
+    body.test_event_code = process.env.META_TEST_EVENT_CODE;
+  }
+
+  const response = await fetch(
+    `https://graph.facebook.com/${META_GRAPH_VERSION}/${META_PIXEL_ID}/events?access_token=${encodeURIComponent(accessToken)}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    }
+  );
+
+  if (!response.ok) {
+    const errorBody = await response.text();
+    throw new Error(`Meta CAPI ${response.status}: ${errorBody}`);
+  }
+
+  return { sent: true };
+}
+
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -168,6 +262,7 @@ export default async function handler(req, res) {
   const workEmail = normalizeText(payload.work_email).toLowerCase();
   const title = normalizeText(payload.title) || null;
   const workshop = normalizeText(payload.workshop) || 'ai-product-design-101';
+  const eventId = normalizeText(payload.event_id) || null;
 
   if (!name) {
     return res.status(400).json({ error: 'Name is required.' });
@@ -194,7 +289,14 @@ export default async function handler(req, res) {
   });
 
   if (insertResponse.ok) {
-    await handleSignupEmails({ name, workEmail, title, workshop });
+    const [, conversionResult] = await Promise.allSettled([
+      handleSignupEmails({ name, workEmail, title, workshop }),
+      sendMetaConversion({ req, name, workEmail, eventId }),
+    ]);
+
+    if (conversionResult.status === 'rejected') {
+      console.error('Meta Conversions API failed:', conversionResult.reason.message);
+    }
 
     return res.status(201).json({ ok: true });
   }
