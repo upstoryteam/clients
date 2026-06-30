@@ -291,13 +291,13 @@
                 autocomplete="email"
                 placeholder="Work email"
               >
-              <label class="visually-hidden" for="waitlist-title-bottom">Title (optional)</label>
+              <label class="visually-hidden" for="waitlist-company-bottom">Company name</label>
               <input
-                id="waitlist-title-bottom"
+                id="waitlist-company-bottom"
                 type="text"
-                name="title"
-                autocomplete="organization-title"
-                placeholder="Title (optional)"
+                name="company"
+                autocomplete="organization"
+                placeholder="Company name"
               >
               <button type="submit" class="btn btn-primary btn-register">Save your spot</button>
             </form>
@@ -360,7 +360,7 @@
       return {
         name: (data.get('name') || '').toString().trim(),
         work_email: (data.get('work_email') || '').toString().trim(),
-        title: (data.get('title') || '').toString().trim(),
+        company: (data.get('company') || '').toString().trim(),
         workshop: (data.get('workshop') || 'ai-product-design-101').toString().trim(),
         event_id: eventId,
       };
