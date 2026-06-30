@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>You're registered | Upstory</title>
+  <meta name="description" content="You're registered for the free Upstory workshop: How to become an AI-native product designer, July 14 at 1p CDT.">
+  <link rel="icon" href="/shared/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="/shared/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="/ai-for-design/styles.css">
+  <!-- Meta Pixel Code -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1099381639935282');
+  fbq('track', 'PageView');
+  // Conversion fires on this thank-you page so it only counts completed
+  // signups. eid is forwarded from the form submit and shared with the
+  // server-side Conversions API event so Meta can deduplicate.
+  (function () {
+    var eventId = new URLSearchParams(window.location.search).get('eid') || undefined;
+    fbq('track', 'CompleteRegistration', {
+      content_name: 'ai-product-design-101',
+      status: true,
+    }, eventId ? { eventID: eventId } : undefined);
+  })();
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1099381639935282&ev=CompleteRegistration&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+</head>
+<body class="workshop-page">
+  <header class="site-header workshop-header" id="site-header">
+    <div class="container-wide">
+      <nav class="nav" aria-label="Main">
+        <a class="nav-logo" href="https://upstory.co/">
+          <img src="https://framerusercontent.com/images/oDaFC8FaO5YkYeHL4dVplXzEs.svg?width=1024&height=320" alt="Upstory" width="1024" height="320">
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero workshop-hero" aria-labelledby="thankyou-headline">
+      <div class="container">
+        <div class="hero-copy workshop-hero-pitch">
+          <p class="workshop-kicker">You're registered · July 14 · 1p CDT</p>
+          <h1 class="hero-headline workshop-hero-title" id="thankyou-headline">You're in. See you at the workshop.</h1>
+          <p class="workshop-value-line">Thanks for registering for <strong>How to become an AI-native product designer</strong>. We've emailed your confirmation — we'll send the joining link before the live session on <strong>July 14 at 1p CDT</strong>.</p>
+          <p class="workshop-value-line">Didn't get the email? Check spam, or reach us at <a href="mailto:sales@upstory.co">sales@upstory.co</a>.</p>
+          <div class="workshop-cta-block">
+            <a class="btn btn-primary" href="https://upstory.co/">Back to Upstory</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer workshop-footer-minimal">
+    <div class="container-wide">
+      <img src="https://framerusercontent.com/images/oDaFC8FaO5YkYeHL4dVplXzEs.svg?width=1024&height=320" alt="Upstory" width="1024" height="320">
+    </div>
+  </footer>
+</body>
+</html>

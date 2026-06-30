@@ -397,16 +397,20 @@
           }
 
           form.reset();
-          statusEl.textContent = result.message || successMessage;
-          statusEl.hidden = false;
-          submitBtn.textContent = 'Joined';
 
-          if (typeof fbq === 'function') {
-            fbq('track', 'CompleteRegistration', {
-              content_name: 'ai-product-design-101',
-              status: true,
-            }, { eventID: eventId });
+          // Existing registrants aren't a new conversion — show the inline
+          // message and stay on the page. New signups go to the thank-you
+          // page, which fires the CompleteRegistration pixel on load.
+          if (result.alreadyRegistered) {
+            statusEl.textContent = result.message || successMessage;
+            statusEl.hidden = false;
+            submitBtn.textContent = 'Joined';
+            return;
           }
+
+          submitBtn.textContent = 'Joined';
+          window.location.assign(`/ai-for-design/thank-you?eid=${encodeURIComponent(eventId)}`);
+          return;
         } catch (error) {
           statusEl.textContent = error.message === 'Submit failed'
             ? 'Something went wrong. Try again or email sales@upstory.co.'
