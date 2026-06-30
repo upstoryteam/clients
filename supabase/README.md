@@ -43,7 +43,8 @@ workshop_waitlist (
   id uuid,
   name text not null,
   work_email text not null,
-  title text,
+  title text,        -- legacy; kept for existing rows
+  company text,      -- captured from the signup form
   workshop text not null,
   created_at timestamptz
 )

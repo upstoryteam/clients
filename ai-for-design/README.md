@@ -20,7 +20,7 @@ Each signup stores:
 |-------|----------|
 | `name` | Yes |
 | `work_email` | Yes |
-| `title` | No |
+| `company` | No |
 | `workshop` | Hidden (defaults to `ai-product-design-101`) |
 
 ### Setup
@@ -58,7 +58,7 @@ If `RESEND_API_KEY` is not set, signups still save — email is skipped.
 In Supabase → Table Editor → `workshop_waitlist`, or:
 
 ```sql
-select name, work_email, title, created_at
+select name, work_email, company, created_at
 from workshop_waitlist
 where workshop = 'ai-product-design-101'
 order by created_at desc;

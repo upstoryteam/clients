@@ -95,12 +95,12 @@ function getTeamNotifyEmails() {
   return [...new Set([...emails, ...alwaysInclude])];
 }
 
-async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
+async function sendTeamNotificationEmail({ name, workEmail, company, workshop }) {
   const config = getResendConfig();
   if (!config) return { skipped: true };
 
   const notifyEmails = getTeamNotifyEmails();
-  const titleLine = title || '—';
+  const companyLine = company || '—';
 
   const html = `
     <div style="font-family: Manrope, Arial, sans-serif; color: #151d1f; line-height: 1.6; max-width: 520px;">
@@ -108,7 +108,7 @@ async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
       <ul style="margin: 0; padding-left: 20px;">
         <li><strong>Name:</strong> ${name}</li>
         <li><strong>Email:</strong> ${workEmail}</li>
-        <li><strong>Title:</strong> ${titleLine}</li>
+        <li><strong>Company:</strong> ${companyLine}</li>
         <li><strong>Workshop:</strong> ${workshop}</li>
       </ul>
     </div>
@@ -119,7 +119,7 @@ async function sendTeamNotificationEmail({ name, workEmail, title, workshop }) {
     '',
     `Name: ${name}`,
     `Email: ${workEmail}`,
-    `Title: ${titleLine}`,
+    `Company: ${companyLine}`,
     `Workshop: ${workshop}`,
   ].join('\n');
 
@@ -260,7 +260,7 @@ export default async function handler(req, res) {
   const payload = req.body || {};
   const name = normalizeText(payload.name);
   const workEmail = normalizeText(payload.work_email).toLowerCase();
-  const title = normalizeText(payload.title) || null;
+  const company = normalizeText(payload.company) || null;
   const workshop = normalizeText(payload.workshop) || 'ai-product-design-101';
   const eventId = normalizeText(payload.event_id) || null;
 
@@ -283,14 +283,14 @@ export default async function handler(req, res) {
     body: JSON.stringify({
       name,
       work_email: workEmail,
-      title,
+      company,
       workshop,
     }),
   });
 
   if (insertResponse.ok) {
     const [, conversionResult] = await Promise.allSettled([
-      handleSignupEmails({ name, workEmail, title, workshop }),
+      handleSignupEmails({ name, workEmail, company, workshop }),
       sendMetaConversion({ req, name, workEmail, eventId }),
     ]);
 
